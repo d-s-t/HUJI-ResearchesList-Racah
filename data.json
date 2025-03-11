@@ -1,0 +1,968 @@
+[
+    {
+        "name": "Nir Bar-Gill",
+        "profileLink": "https://phys.huji.ac.il/contacts/bar-gill_nir",
+        "photo": null,
+        "professionalTitle": "Associate Professor",
+        "contact": {
+            "email": "bargill@phys.huji.ac.il",
+            "website": "http://bargill.phys.huji.ac.il/"
+        },
+        "researchArea": [
+            "Quantum information",
+            "NV centers in diamond",
+            "Quantum technologies",
+            "Magnetic sensing"
+        ]
+    },
+    {
+        "name": "Rivka Bekenstein",
+        "profileLink": "https://phys.huji.ac.il/people/rivka-bekenstein",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/rivka_bekenstein_picture_copy.jpg?m=1715196689&itok=t0r3l8xw",
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "email": "rivka.bekenstein@mail.huji.ac.il",
+            "website": "https://openscholar.huji.ac.il/rivka-bekenstein"
+        },
+        "researchArea": [
+            "Quantum nanophotonics",
+            "Quantum science and information"
+        ]
+    },
+    {
+        "name": "Umberto Borla",
+        "profileLink": "https://phys.huji.ac.il/people/umberto-borla",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "umberto.borla@tum.de"
+        },
+        "researchArea": [
+            "Advisor: Erez Zohar"
+        ]
+    },
+    {
+        "name": "Mordechai Botton-Dascal",
+        "profileLink": "https://phys.huji.ac.il/contacts/botton-dascal_mordechai",
+        "photo": null,
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "phone": "02 6584255",
+            "email": "bdmoti@mail.huji.ac.il"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Yaron Bromberg",
+        "profileLink": "https://phys.huji.ac.il/contacts/bromberg_yaron",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/yaron_bromberg.jpg?m=1715196688&itok=7hnBIFDE",
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "phone": "02 6584614",
+            "email": "yaron.bromberg@mail.huji.ac.il",
+            "website": "https://scholars.huji.ac.il/yaronbromberg/"
+        },
+        "researchArea": [
+            "Optics",
+            "Quantum optics",
+            "Quantum technologies",
+            "Light in random media"
+        ]
+    },
+    {
+        "name": "Daniel Cohen",
+        "profileLink": "https://phys.huji.ac.il/DanielCohen",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "daniel.cohen7@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Alex Retzker"
+        ]
+    },
+    {
+        "name": "Hagai Eisenberg",
+        "profileLink": "https://phys.huji.ac.il/contacts/eisenberg_hagai",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/hagai_eisenberg.jpg?m=1715196688&itok=XyMdHPUP",
+        "professionalTitle": "Associate Professor",
+        "contact": {
+            "phone": "02 6585228",
+            "email": "hagai.eisenberg@huji.ac.il",
+            "website": "http://old.phys.huji.ac.il/~hagaie/"
+        },
+        "researchArea": [
+            "Optics",
+            "Quantum information"
+        ]
+    },
+    {
+        "name": "Nir Gavrielov",
+        "profileLink": "https://phys.huji.ac.il/people/nir-gavrielov",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "nir.gavrielov@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Alex Retzker"
+        ]
+    },
+    {
+        "name": "Tuvia  Gefen",
+        "profileLink": "https://phys.huji.ac.il/people/tuvia-gefen-0",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/tuvia.jpg?m=1730843622&itok=GnqJS4QU",
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "email": "tuvia.gefen@mail.huji.ac.il"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Tuvia Gefen",
+        "profileLink": "https://phys.huji.ac.il/people/tuvia-gefen",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/passport_iqim_caltech_-_tuvia_gefen.jpg?m=1722853512&itok=b8RteCid",
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "email": "getuvia@gmail.com"
+        },
+        "researchArea": [
+            "Quantum information",
+            "Quantum metrology",
+            "Quantum engineering"
+        ]
+    },
+    {
+        "name": "John Howell",
+        "profileLink": "https://phys.huji.ac.il/contacts/howell_john",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/john_howell.jpg?m=1715196689&itok=qcG30ugF",
+        "professionalTitle": "Full Professor",
+        "contact": {
+            "phone": "02 6585834",
+            "email": "john.howell@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Optics",
+            "Quantum information"
+        ]
+    },
+    {
+        "name": "Nadav Katz",
+        "profileLink": "https://phys.huji.ac.il/contacts/katz_nadav",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/nadav_katz.jpg?m=1715196689&itok=dfuzcRMI",
+        "professionalTitle": "Associate Professor",
+        "contact": {
+            "phone": "02 6584133",
+            "email": "katzn@phys.huji.ac.il",
+            "website": "https://quantumcoherence.huji.ac.il/"
+        },
+        "researchArea": [
+            "Quantum optics",
+            "Superconductivity",
+            "Quantum information"
+        ]
+    },
+    {
+        "name": "Ralfy Kenaz",
+        "profileLink": "https://phys.huji.ac.il/RalfyKenaz",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "ralfy.kenaz@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Ronen Rapaport"
+        ]
+    },
+    {
+        "name": "Naftali Kirsh",
+        "profileLink": "https://phys.huji.ac.il/people/naftali-kirsh",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "naftali.kirsh@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Nadav Katz"
+        ]
+    },
+    {
+        "name": "Johannes Knaute",
+        "profileLink": "https://phys.huji.ac.il/people/johannes-knaute",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "johannes.knaute@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "quantum information/simulation",
+            "tensor networks",
+            "high-energy theory",
+            "holography"
+        ]
+    },
+    {
+        "name": "Shlomi Kotler",
+        "profileLink": "https://phys.huji.ac.il/people/shlomi-kotler",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/bcc_9710_-_shlomi_kotler.jpg?m=1715196688&itok=wfWO4hPf",
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "phone": "02 6584592",
+            "email": "shlomi.kotler@mail.huji.ac.il",
+            "website": "https://shlomikotler.huji.ac.il/"
+        },
+        "researchArea": [
+            "Quantum Physics",
+            "Quantum Technologies",
+            "Quantum Micro-electro-mechanical Systems (MEMS)",
+            "Superconducting devices",
+            "Quantum-limited measurements",
+            "Hybrid quantum systems"
+        ]
+    },
+    {
+        "name": "Amir Leshem",
+        "profileLink": "https://phys.huji.ac.il/people/amir-leshem",
+        "photo": null,
+        "professionalTitle": "Senior Researcher",
+        "contact": {
+            "email": "amir.leshem@mail.huji.ac.il"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Dror Liran",
+        "profileLink": "https://phys.huji.ac.il/people/dror-liran",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "dror.liran@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Ronen Rapaport"
+        ]
+    },
+    {
+        "name": "Boaz Lubotzky",
+        "profileLink": "https://phys.huji.ac.il/BoazLubotzky",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "boaz.lubotzky@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor-Ronen Rapaport"
+        ]
+    },
+    {
+        "name": "Naama Maroudas-Sklare",
+        "profileLink": "https://phys.huji.ac.il/people/naama-maroudas-sklare",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "naama.maroudas-sa@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Yossi Paltiel"
+        ]
+    },
+    {
+        "name": "Santiago Oviedo-Casado",
+        "profileLink": "https://phys.huji.ac.il/people/santiago-oviedo-casado",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "oviedo.cs@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Quantum Physics",
+            "High Energy Physics"
+        ]
+    },
+    {
+        "name": "Ronen Rapaport",
+        "profileLink": "https://phys.huji.ac.il/contacts/rapaport_ronen",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/ronen_rapaport.jpg?m=1715196876&itok=R0EpO-sT",
+        "professionalTitle": "Full Professor",
+        "contact": {
+            "phone": "02 6586270",
+            "email": "ronenr@phys.huji.ac.il",
+            "website": "http://old.phys.huji.ac.il/~ronenr/index.htm?temp="
+        },
+        "researchArea": [
+            "Condensed matter",
+            "Many-body quantum physics in low dimensional electronic systems",
+            "Nano-physics and light-matter interactions on the nanoscale",
+            "Physics of excitons and polaritons in semiconductor quantum structures",
+            "Nanophotonics and quantum optics",
+            "Quantum technology and information"
+        ]
+    },
+    {
+        "name": "Alex Retzker",
+        "profileLink": "https://phys.huji.ac.il/contacts/retzker_alex",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/alex_retzker.jpg?m=1715196877&itok=N31YJeXw",
+        "professionalTitle": "Full Professor",
+        "contact": {
+            "phone": "02 6586329",
+            "email": "retzker@phys.huji.ac.il",
+            "website": "https://openscholar.huji.ac.il/retzker"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Mamoon Safadi",
+        "profileLink": "https://phys.huji.ac.il/MamoonSafadi",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "mamoon.safadi@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Yaron Bromberg"
+        ]
+    },
+    {
+        "name": "Alon Salhov",
+        "profileLink": "https://phys.huji.ac.il/people/alon-salhov",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "alon.salhov@mail.huji.ac.il",
+            "website": "https://retzkergroup.huji.ac.il/people/alon-salhov"
+        },
+        "researchArea": [
+            "Advisor: Alex Retzker"
+        ]
+    },
+    {
+        "name": "Ronen Shekel",
+        "profileLink": "https://phys.huji.ac.il/people/ronen-shekel",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "ronen.shekel@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Yaron Bromberg"
+        ]
+    },
+    {
+        "name": "Itay Shomroni",
+        "profileLink": "https://phys.huji.ac.il/people/itay-shomroni",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/itay_shomroni.jpg?m=1715196876&itok=Al3CyjiG",
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "phone": "02 6586329",
+            "email": "itay.shomroni@mail.huji.ac.il",
+            "website": "http://shomronigroup.huji.ac.il/"
+        },
+        "researchArea": [
+            "Quantum measurements",
+            "Quantum optomechanics",
+            "Quantum information",
+            "Quantum optics",
+            "AMO physics",
+            "Cavity QED"
+        ]
+    },
+    {
+        "name": "Anatoly Shukhin",
+        "profileLink": "https://phys.huji.ac.il/people/anatoly-shukhin",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "anatoly.shukhin@mail.ru"
+        },
+        "researchArea": [
+            "Advisor: Hagai Eisenberg"
+        ]
+    },
+    {
+        "name": "Kfir Sulimany",
+        "profileLink": "https://phys.huji.ac.il/KfirSulimany",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "kfir.sulimany@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Yaron Bromberg"
+        ]
+    },
+    {
+        "name": "Ofek Vardi",
+        "profileLink": "https://phys.huji.ac.il/people/ofek-vardi",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "ofek.vardi@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Yossi Paltiel"
+        ]
+    },
+    {
+        "name": "Leonid Vidro",
+        "profileLink": "https://phys.huji.ac.il/LeonidVidro",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "leonid.vidro@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Hagai Eisenberg"
+        ]
+    },
+    {
+        "name": "Arie Zigler",
+        "profileLink": "https://phys.huji.ac.il/ArieZigler",
+        "photo": null,
+        "professionalTitle": "Emeriti",
+        "contact": {
+            "phone": "02 6585157",
+            "email": "azigler@mail.huji.ac.il",
+            "website": "https://laserlab.huji.ac.il/"
+        },
+        "researchArea": [
+            "Laser plasma interactions",
+            "Particle acceleration by lasers"
+        ]
+    },
+    {
+        "name": "Erez Zohar",
+        "profileLink": "https://phys.huji.ac.il/people/erez-zohar",
+        "photo": null,
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "phone": "02 6586129",
+            "email": "erez.zohar@mail.huji.ac.il",
+            "website": "http://www.erezzohar.com/"
+        },
+        "researchArea": [
+            "Quantum Many Body Physics",
+            "Quantum Information",
+            "Mathematical Physics",
+            "Quantum Field Theory",
+            "Lattice Gauge Theories"
+        ]
+    },
+    {
+        "name": "Yael Alush",
+        "profileLink": "https://phys.huji.ac.il/people/yael-alush",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "yael.alush@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Nicholas Stone"
+        ]
+    },
+    {
+        "name": "Shimon Asida",
+        "profileLink": "https://phys.huji.ac.il/contacts/asida_shimon",
+        "photo": null,
+        "professionalTitle": "Senior Researcher",
+        "contact": {
+            "phone": "02 6586854",
+            "email": "sasida@phys.huji.ac.il"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Shmuel Balberg",
+        "profileLink": "https://phys.huji.ac.il/contacts/balberg_shmuel",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/shmuel_balberg.jpg?m=1715196689&itok=-Mio2Bwb",
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "phone": "02 6586851",
+            "email": "shmblbrg@phys.huji.ac.il",
+            "website": "http://old.phys.huji.ac.il/~shmblbrg"
+        },
+        "researchArea": [
+            "Theoretical astrophysics",
+            "Radiation hydrodynamics",
+            "Supernovae",
+            "Neutron stars"
+        ]
+    },
+    {
+        "name": "Zalman Barkat",
+        "profileLink": "https://phys.huji.ac.il/ZalmanBarkat",
+        "photo": null,
+        "professionalTitle": "Emeriti",
+        "contact": {
+            "phone": "02 6584806"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Yuval Birnboim",
+        "profileLink": "https://phys.huji.ac.il/contacts/birnboim_yuval",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/yuval_birnboim.jpg?m=1715196689&itok=y9tHVLGT",
+        "professionalTitle": "Associate Professor",
+        "contact": {
+            "phone": "02 6586862",
+            "email": "yuval@phys.huji.ac.il"
+        },
+        "researchArea": [
+            "Hydrodynamics"
+        ]
+    },
+    {
+        "name": "Itai Bromberg",
+        "profileLink": "https://phys.huji.ac.il/people/itai-bromberg",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "itai.bromberg@mail.huji.ac.il"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Avishai Dekel",
+        "profileLink": "https://phys.huji.ac.il/contacts/dekel_avishai",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/avishay_dekel.jpg?m=1715196766&itok=w12WD9Et",
+        "professionalTitle": "Emeriti",
+        "contact": {
+            "phone": "02 6584100",
+            "email": "dekel@phys.huji.ac.il",
+            "website": "http://old.phys.huji.ac.il/~dekel/"
+        },
+        "researchArea": [
+            "Cosmology",
+            "Formation of galaxies and large-scale structure in the universe"
+        ]
+    },
+    {
+        "name": "Dhruba Dutta Chowdhury",
+        "profileLink": "https://phys.huji.ac.il/people/dhruba-dutta-chowdhury",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "dhruba.duttachowdhury@yale.edu"
+        },
+        "researchArea": [
+            "Advisor: Avishai Dekel"
+        ]
+    },
+    {
+        "name": "Shmuel Gilbaum",
+        "profileLink": "https://phys.huji.ac.il/ShmuelGilbaum",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "shmuel.gilbaum@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor-Nicholas Stone"
+        ]
+    },
+    {
+        "name": "Omry Ginzburg",
+        "profileLink": "https://phys.huji.ac.il/OmryGinzburg",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "omry.ginzburg@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Avishai Dekel"
+        ]
+    },
+    {
+        "name": "Sivan Ginzburg",
+        "profileLink": "https://phys.huji.ac.il/people/sivan-ginzburg",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/sivan.jpg?m=1715196688&itok=zwbFpo72",
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "email": "sivan.ginzburg@mail.huji.ac.il",
+            "website": "https://ginzburgsivan.wixsite.com/sivan"
+        },
+        "researchArea": [
+            "Theoretical Astrophysics",
+            "Stellar Evolution",
+            "Planets"
+        ]
+    },
+    {
+        "name": "Ami Glasner",
+        "profileLink": "https://phys.huji.ac.il/contacts/glasner_ami",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/ami_glasner.jpg?m=1715196767&itok=ddc4o-3I",
+        "professionalTitle": "Associate Professor",
+        "contact": {
+            "phone": "02 6584727",
+            "email": "glasner@phys.huji.ac.il",
+            "website": "http://old.phys.huji.ac.il/~glasner/"
+        },
+        "researchArea": [
+            "Novae",
+            "Supernovae Type Ia",
+            "Type I X-ray bursts",
+            "Convection and mixing in stars",
+            "Late stages of stellar evolution"
+        ]
+    },
+    {
+        "name": "Orly Gnat",
+        "profileLink": "https://phys.huji.ac.il/contacts/gnat_orly",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/orly_gnat.jpg?m=1715196689&itok=psN6UhVk",
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "phone": "02 6584215",
+            "email": "orlyg@phys.huji.ac.il",
+            "website": "http://old.phys.huji.ac.il/~orlyg"
+        },
+        "researchArea": [
+            "Theoretical & Numerical Astrophysics",
+            "Intergalactic medium",
+            "Non-equilibrium processes in astrophysical plasma"
+        ]
+    },
+    {
+        "name": "Aung Han",
+        "profileLink": "https://phys.huji.ac.il/people/aung-han",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "han.aung@yale.edu"
+        },
+        "researchArea": [
+            "Advisor: Avishai Dekel"
+        ]
+    },
+    {
+        "name": "Yehuda Hoffman",
+        "profileLink": "https://phys.huji.ac.il/contacts/hoffman_yehuda",
+        "photo": null,
+        "professionalTitle": "Full Professor",
+        "contact": {
+            "phone": "02 6584417",
+            "email": "hoffman@huji.ac.il"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Assaf Horesh",
+        "profileLink": "https://phys.huji.ac.il/contacts/horesh_assaf",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/assaf_horesh.jpg?m=1715196689&itok=JMo1wN7O",
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "phone": "02 6584928",
+            "email": "assafh@mail.huji.ac.il",
+            "website": "http://old.phys.huji.ac.il/~assaf.horesh/"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Salomon Jean-Baptiste",
+        "profileLink": "https://phys.huji.ac.il/people/salomon-jean-baptiste",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "jeanbaptiste.salomon.fr@gmail.com"
+        },
+        "researchArea": [
+            "Advisor: Yehuda Hofman"
+        ]
+    },
+    {
+        "name": "Bach Joseph",
+        "profileLink": "https://phys.huji.ac.il/BachJoseph",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "bach.joseph@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Orly Gnat"
+        ]
+    },
+    {
+        "name": "Karamveer Kaur",
+        "profileLink": "https://phys.huji.ac.il/people/karamveer-kaur",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "karamveerkaur30@gmail.com"
+        },
+        "researchArea": [
+            "Dynamics of Nuclear Star Clusters",
+            "Galactic Dynamics"
+        ]
+    },
+    {
+        "name": "Sharon Lapiner",
+        "profileLink": "https://phys.huji.ac.il/people/sharon-lapiner",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "sharon.lapiner@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Avishai Dekel"
+        ]
+    },
+    {
+        "name": "Zhaozhou Li",
+        "profileLink": "https://phys.huji.ac.il/people/li-zhaozhou",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "zhaozhou.li@mail.huji.ac.il",
+            "website": "https://syrte.github.io/"
+        },
+        "researchArea": [
+            "Structure Formation",
+            "Galactic Dynamics"
+        ]
+    },
+    {
+        "name": "Itamar Lichtenstadt",
+        "profileLink": "https://phys.huji.ac.il/ItamarLichtenstadt",
+        "photo": null,
+        "professionalTitle": "Emeriti",
+        "contact": {
+            "phone": "02 6584491",
+            "email": "itamar@phys.huji.ac.il"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Eli Livne",
+        "profileLink": "https://phys.huji.ac.il/EliLivne",
+        "photo": null,
+        "professionalTitle": "Emeriti",
+        "contact": {
+            "phone": "02 6584727",
+            "email": "livne@phys.huji.ac.il"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Nir Mandelker",
+        "profileLink": "https://phys.huji.ac.il/people/nir-mandelker",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/profile_-_nir_mandelker_01.jpg?m=1715196688&itok=XSZTUQ_l",
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "email": "nir.mandelker@mail.huji.ac.il",
+            "website": "http://www.nirmandelker.com/"
+        },
+        "researchArea": [
+            "Astrophysics",
+            "Cosmology",
+            "Hydrodynamics"
+        ]
+    },
+    {
+        "name": "Dmitrii Ofengeim",
+        "profileLink": "https://phys.huji.ac.il/people/dmitrii-ofengeim",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "dmitrii.ofengeim@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Tsvi Piran"
+        ]
+    },
+    {
+        "name": "Matteo Pais",
+        "profileLink": "https://phys.huji.ac.il/people/matteo-pais",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "matteo.pais@mail.huji.ac.il"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Tsvi Piran",
+        "profileLink": "https://phys.huji.ac.il/contacts/piran_tsvi",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/tsvi_piran.jpg?m=1715196766&itok=H3TEusj2",
+        "professionalTitle": "Emeriti",
+        "contact": {
+            "phone": "02 6584233",
+            "email": "tsvi@phys.huji.ac.il",
+            "website": "https://scholars.huji.ac.il/tsvipiran"
+        },
+        "researchArea": [
+            "Relativistic Astrophysics",
+            "High Energy Astrophysics",
+            "General Relativity",
+            "Black hole",
+            "neutron stars",
+            "Gamma-ray Bursts",
+            "Gravitational Waves",
+            "Tidal Disruption Events",
+            "Nucleosynthesis",
+            "Ultra High energy Cosmic Rays",
+            "Accretion disks"
+        ]
+    },
+    {
+        "name": "Barak Rom",
+        "profileLink": "https://phys.huji.ac.il/people/barak-rom",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "barak.rom@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Reem Sari"
+        ]
+    },
+    {
+        "name": "Reem Sari",
+        "profileLink": "https://phys.huji.ac.il/contacts/sari_reem",
+        "photo": null,
+        "professionalTitle": "Full Professor",
+        "contact": {
+            "phone": "02 6585806",
+            "email": "sari@phys.huji.ac.il",
+            "website": "https://scholars.huji.ac.il/reemsari"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Itai Sfaradi",
+        "profileLink": "https://phys.huji.ac.il/ItaiSfaradi",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/itai_sfaradi.jpg?m=1715240492&itok=yCOZXeF4",
+        "professionalTitle": null,
+        "contact": {
+            "email": "itai.sfaradi@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Assaf Horesh"
+        ]
+    },
+    {
+        "name": "Nir Shaviv",
+        "profileLink": "https://phys.huji.ac.il/contacts/shaviv_nir",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/_nir_shaviv.jpg?m=1715196852&itok=2_zgEzga",
+        "professionalTitle": "Full Professor",
+        "contact": {
+            "phone": "02 6585807",
+            "email": "shaviv@phys.huji.ac.il",
+            "website": "http://old.phys.huji.ac.il/~shaviv"
+        },
+        "researchArea": [
+            "Astrophysics",
+            "Climate Science"
+        ]
+    },
+    {
+        "name": "Emanuele Sobacchi",
+        "profileLink": "https://phys.huji.ac.il/people/emanuele-sobacchi",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "emanuele.sobacchi@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Tsvi Piran"
+        ]
+    },
+    {
+        "name": "Josef Stein",
+        "profileLink": "https://phys.huji.ac.il/JosefStein",
+        "photo": null,
+        "professionalTitle": "Emeriti",
+        "contact": {
+            "phone": "02 6584806",
+            "email": "yossi@phys.huji.ac.il"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Elad Steinberg",
+        "profileLink": "https://phys.huji.ac.il/people/elad-steinberg",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "eladtan1@gmail.com"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Nicholas Stone",
+        "profileLink": "https://phys.huji.ac.il/people/nicholas-chamberlain-stone",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/nick_stone.jpg?m=1715196852&itok=E2Y2VOhW",
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "phone": "02 6584671",
+            "email": "nicholas.stone@mail.huji.ac.il",
+            "website": "https://www.ncstone.space/"
+        },
+        "researchArea": [
+            "Theoretical Astrophysics"
+        ]
+    },
+    {
+        "name": "Odelia Teboul",
+        "profileLink": "https://phys.huji.ac.il/OdeliaTeboul",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/odelia_teboul.jpg?m=1715360575&itok=hrbQSLKZ",
+        "professionalTitle": null,
+        "contact": {
+            "email": "odelia.teboul1@mail.huji.ac.il"
+        },
+        "researchArea": [
+            "Advisor: Nir Shaviv"
+        ]
+    },
+    {
+        "name": "Irina Thaler",
+        "profileLink": "https://phys.huji.ac.il/IrenaThaler",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/irina_thaler.jpg?m=1715389184&itok=Rz2t205S",
+        "professionalTitle": null,
+        "contact": {
+            "phone": "02 6585893",
+            "email": "irina.thaler@mail.huji.ac.il"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Yitzhak Tuchman",
+        "profileLink": "https://phys.huji.ac.il/YitzhakTuchman",
+        "photo": null,
+        "professionalTitle": "Emeriti",
+        "contact": {
+            "phone": "02 6584490",
+            "email": "tuchma@vms.huji.ac.il"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Amri Wandel",
+        "profileLink": "https://phys.huji.ac.il/AmriWandel",
+        "photo": "https://phys.huji.ac.il/sites/default/files/styles/profile_thumbnail/public/physics/files/amri_wandel.jpg?m=1715196767&itok=OVPSML6C",
+        "professionalTitle": "Emeriti",
+        "contact": {
+            "phone": "02 6586860",
+            "email": "amri@vms.huji.ac.il",
+            "website": "https://en.wikipedia.org/wiki/Amri_Wandel"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Zhiyuan Yao",
+        "profileLink": "https://phys.huji.ac.il/zhiyuanyao",
+        "photo": null,
+        "professionalTitle": null,
+        "contact": {
+            "email": "zhiyuan.yao@mail.huji.ac.il"
+        },
+        "researchArea": []
+    },
+    {
+        "name": "Elad Zinger",
+        "profileLink": "https://phys.huji.ac.il/people/elad-zinger",
+        "photo": null,
+        "professionalTitle": "Senior Lecturer",
+        "contact": {
+            "email": "elad.zinger@mail.huji.ac.il"
+        },
+        "researchArea": []
+    }
+]

@@ -1,0 +1,53 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    table-layout: auto;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #337ab7;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  th,
+  td {
+    white-space: nowrap;
+  }
+  th:last-child,
+  td:last-child {
+    white-space: normal;
+  }
+  
+  .research-tags span {
+    display: inline-block; /* Instead of relying on the parent's flex display */
+    margin-right: 5px;
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
+    padding: 3px 5px;
+    background-color: #bbd4ff;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+.research-tags { /* Remove the display:flex related properties */
+    gap: 2px;
+    align-items: flex-start; /*  No longer needed*/
+}
