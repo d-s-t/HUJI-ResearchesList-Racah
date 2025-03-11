@@ -1,6 +1,6 @@
 function createTableFromObjects(data) {
     if (!data || data.length === 0) {
-        return "No data to display."; 
+        return "No data to display.";
     }
 
     const table = document.createElement('table');
@@ -10,22 +10,42 @@ function createTableFromObjects(data) {
 
     const headers = ["Name", "Title", "Email", "Website", "Phone", "Address", "Research Area"].map(headerText => {
         const th = document.createElement('th');
-        th.textContent = headerText;
+
+        if (headerText === "Title") {
+            const label = document.createElement('label');
+            label.textContent = headerText;
+            th.appendChild(label);
+            const select = createTitleFilter(data);
+            th.appendChild(select);
+            select.addEventListener('change', () => filterTable(data));
+        } else if (headerText === "Research Area") {
+            const label = document.createElement('label');
+            label.textContent = headerText;
+            th.appendChild(label);
+            const input = createResearchAreaFilter();
+            th.appendChild(input);
+            input.addEventListener('input', () => filterTable(data));
+        } else {
+            th.textContent = headerText;
+        }
         headerRow.appendChild(th);
-        return th; 
+        return th;
     });
 
     populateTbody(tbody, data);
 
     headers.forEach((header, columnIndex) => {
+        const labels = header.getElementsByTagName('label');
+        if(labels.length > 0) {
+            header = labels[0];
+        }
         header.addEventListener('click', () => {
-           const sortDirection = header.dataset.sortDirection || 'asc';
+            const sortDirection = header.dataset.sortDirection || 'asc';
             const sortedData = [...data].sort((a, b) => {
                 const valueA = getValueForSorting(a, columnIndex);
                 const valueB = getValueForSorting(b, columnIndex);
 
-                // Correct sorting logic
-                 if (valueA < valueB) {
+                if (valueA < valueB) {
                     return sortDirection === 'asc' ? -1 : 1;
                 }
                 if (valueA > valueB) {
@@ -50,81 +70,66 @@ function getValueForSorting(person, columnIndex) {
         case 1:
             return person.professionalTitle || '';
         case 2:
-            return person.contact && person.contact.email || ''; //check that contact and email exists
+            return person.contact && person.contact.email || '';
         case 3:
-            return person.contact && person.contact.website || '';  //check that contact and website exists
+            return person.contact && person.contact.website || '';
         case 4:
-            return person.contact && person.contact.phone || '';  //check that contact and phone exists
+            return person.contact && person.contact.phone || '';
         case 5:
-            return person.contact && person.contact.address || '';  //check that contact and address exists
+            return person.contact && person.contact.address || '';
         case 6:
-            return person.researchArea ? person.researchArea.join(', ') : ''; // Handle researchArea potentially being null or undefined
+            return person.researchArea ? person.researchArea.join(', ') : '';
         default:
             return '';
     }
 }
 
-function createFilterElements(data) {
-    const filterContainer = document.createElement('div');
-
-    // Title Filter
-    const titleFilterLabel = document.createElement('label');
-    titleFilterLabel.textContent = "Title Filter:";
-    filterContainer.appendChild(titleFilterLabel);
-
-    const titleFilterSelect = document.createElement('select');
-    const uniqueTitles = [...new Set(data.map(person => person.professionalTitle || ""))]; // Get unique titles
-    const titleOption = document.createElement('option')
-    titleOption.value = "<all>"
-    titleOption.textContent = "All"
-    titleFilterSelect.appendChild(titleOption)
-
-
+function createTitleFilter(data) {
+    const select = document.createElement('select');
+    select.id = 'title-filter';
+    const uniqueTitles = [...new Set(data.map(person => person.professionalTitle || ""))];
+    const allOption = document.createElement('option');
+    allOption.value = "<all>";
+    allOption.textContent = "All";
+    select.appendChild(allOption);
     uniqueTitles.forEach(title => {
         const option = document.createElement('option');
         option.value = title;
         option.textContent = title;
-        titleFilterSelect.appendChild(option);
+        select.appendChild(option);
     });
+    return select;
+}
 
-    titleFilterSelect.addEventListener('change', () => filterTable(data));
-    filterContainer.appendChild(titleFilterSelect);
-
-
-
-    // Research Area Filter
-    const researchFilterLabel = document.createElement('label');
-    researchFilterLabel.textContent = "Research Area Filter:";
-    filterContainer.appendChild(researchFilterLabel);
-
-    const researchFilterInput = document.createElement('input');
-    researchFilterInput.type = 'text';
-    researchFilterInput.placeholder = "Enter research area (or 'advisor')";
-    researchFilterInput.addEventListener('input', () => filterTable(data));
-    filterContainer.appendChild(researchFilterInput);
-
-
-    return filterContainer;
+function createResearchAreaFilter() {
+    const input = document.createElement('input');
+    input.id = 'research-filter';
+    input.type = 'text';
+    input.placeholder = "Filter..."; // Shorter placeholder
+    return input;
 }
 
 function filterTable(originalData) {
-    const titleFilterValue = document.querySelector('#table-container select').value;
-    const researchFilterValue = document.querySelector('#table-container input').value.toLowerCase();  // Case-insensitive
     const tableContainer = document.getElementById('table-container')
     const table = tableContainer.querySelector('table')
 
     if (!table) {
-        return;  //No table present
+        return;
     }
     const tbody = table.querySelector('tbody')
 
+    const titleFilter = document.getElementById('title-filter'); 
+    const researchFilter = document.getElementById('research-filter');
+    const titleFilterValue = titleFilter?.value || "<all>";
+    const researchFilterValue = researchFilter?.value.toLowerCase() || "";
+ 
     const filteredData = originalData.filter(person => {
         const titleMatch = titleFilterValue === "<all>" || ((person.professionalTitle || "") === titleFilterValue);
         const researchMatch = researchFilterValue === "" || (person.researchArea || []).some(area => area.toLowerCase().startsWith(researchFilterValue));
         return titleMatch && researchMatch;
     });
 
-    populateTbody(tbody, filteredData)
+    populateTbody(tbody, filteredData);
 }
 
 function populateTbody(tbody, data) {
@@ -134,7 +139,7 @@ function populateTbody(tbody, data) {
 
         const nameCell = row.insertCell();
         const nameLink = document.createElement('a');
-        nameLink.href = person.profileLink || "#"; 
+        nameLink.href = person.profileLink || "#";
         nameLink.textContent = person.name || "";
         nameCell.appendChild(nameLink);
 
@@ -156,9 +161,8 @@ function populateTbody(tbody, data) {
             websiteCell.appendChild(websiteLink);
         }
 
-        row.insertCell().textContent = person.contact && person.contact.phone || ""; //check that contact and phone exists
-        row.insertCell().textContent = person.contact && person.contact.address || ""; //check that contact and address exists
-
+        row.insertCell().textContent = person.contact && person.contact.phone || "";
+        row.insertCell().textContent = person.contact && person.contact.address || "";
 
         const researchCell = row.insertCell();
         researchCell.classList.add("research-tags");
@@ -171,12 +175,10 @@ function populateTbody(tbody, data) {
     });
 }
 
-
-
 function handleFileSelect(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
-    const fileInput = event.target; // Get the file input element
+    const fileInput = event.target;
     const tableContainer = document.getElementById('table-container');
 
     reader.onload = (e) => {
@@ -190,10 +192,8 @@ function handleFileSelect(event) {
             return;
         }
         const table = createTableFromObjects(data);
-        const filterElements = createFilterElements(data);
-        tableContainer.appendChild(filterElements);
         tableContainer.appendChild(table);
-        fileInput.style.display = 'none'; 
+        fileInput.style.display = 'none';
 
     };
 
