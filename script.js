@@ -1,6 +1,6 @@
 function createTableFromObjects(data) {
     if (!data || data.length === 0) {
-        return "No data to display."; // Or an empty table element, if you prefer
+        return "No data to display."; 
     }
 
     const table = document.createElement('table');
@@ -8,63 +8,106 @@ function createTableFromObjects(data) {
     const tbody = table.createTBody();
     const headerRow = thead.insertRow();
 
-    // Header cells
-    ["Name", "Title", "Email", "Website", "Phone", "Address", "Research Area"].forEach(headerText => {
+    const headers = ["Name", "Title", "Email", "Website", "Phone", "Address", "Research Area"].map(headerText => {
         const th = document.createElement('th');
         th.textContent = headerText;
         headerRow.appendChild(th);
+        return th; 
     });
 
-    // Data rows
+    function populateTbody(data) {
+        tbody.innerHTML = '';
     data.forEach(person => {
         const row = tbody.insertRow();
 
-        // Name with link
         const nameCell = row.insertCell();
         const nameLink = document.createElement('a');
-        nameLink.href = person.profileLink || "#"; // Handle missing profile link
-        nameLink.textContent = person.name || ""; // Handle missing name
+            nameLink.href = person.profileLink || "#"; 
+            nameLink.textContent = person.name || "";
         nameCell.appendChild(nameLink);
 
-
-
-        //Other cells:
         row.insertCell().textContent = person.professionalTitle || "";
-        const emailCell = row.insertCell()
-        if(person.contact.email) {
+
+            const emailCell = row.insertCell();
+            if (person.contact && person.contact.email) {
              const emailLink = document.createElement('a');
              emailLink.href = `mailto:${person.contact.email}`;
              emailLink.textContent = person.contact.email;
              emailCell.appendChild(emailLink);
         }
 
-
-        const websiteCell = row.insertCell()
-        if(person.contact.website) {
+            const websiteCell = row.insertCell();
+            if (person.contact && person.contact.website) {
              const websiteLink = document.createElement('a');
              websiteLink.href = person.contact.website;
-             websiteLink.textContent =  "Website"; // Or the full URL if you prefer
+                websiteLink.textContent = "Website";
              websiteCell.appendChild(websiteLink);
         }
 
-        row.insertCell().textContent = person.contact.phone || "";
-        row.insertCell().textContent = person.contact.address || "";
+            row.insertCell().textContent = person.contact && person.contact.phone || ""; //check that contact and phone exists
+            row.insertCell().textContent = person.contact && person.contact.address || ""; //check that contact and address exists
 
 
-        // Research Area (as spans within a cell)
         const researchCell = row.insertCell();
-        researchCell.classList.add("research-tags"); // Add class for styling if needed
+            researchCell.classList.add("research-tags");
 
-        (person.researchArea || []).forEach(area => { // Handles the case where researchArea is null or undefined
+            (person.researchArea || []).forEach(area => {
             const span = document.createElement('span');
             span.textContent = area;
             researchCell.appendChild(span);
         });
     });
+    }
 
+    populateTbody(data);
+
+    headers.forEach((header, columnIndex) => {
+        header.addEventListener('click', () => {
+           const sortDirection = header.dataset.sortDirection || 'asc';
+            const sortedData = [...data].sort((a, b) => {
+                const valueA = getValueForSorting(a, columnIndex);
+                const valueB = getValueForSorting(b, columnIndex);
+
+                // Correct sorting logic
+                 if (valueA < valueB) {
+                    return sortDirection === 'asc' ? -1 : 1;
+                }
+                if (valueA > valueB) {
+                    return sortDirection === 'asc' ? 1 : -1;
+                }
+                return 0;
+            });
+
+            populateTbody(sortedData);
+            header.dataset.sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+
+        });
+    });
 
     return table;
 }
+
+function getValueForSorting(person, columnIndex) {
+    switch (columnIndex) {
+        case 0:
+            return person.name ? person.name.toLowerCase() : '';
+        case 1:
+            return person.professionalTitle || '';
+        case 2:
+            return person.contact && person.contact.email || ''; //check that contact and email exists
+        case 3:
+            return person.contact && person.contact.website || '';  //check that contact and website exists
+        case 4:
+            return person.contact && person.contact.phone || '';  //check that contact and phone exists
+        case 5:
+            return person.contact && person.contact.address || '';  //check that contact and address exists
+        case 6:
+            return person.researchArea ? person.researchArea.join(', ') : ''; // Handle researchArea potentially being null or undefined
+        default:
+            return '';
+    }
+}
+
 
 function handleFileSelect(event) {
     const file = event.target.files[0];
@@ -86,3 +129,9 @@ function handleFileSelect(event) {
 
     reader.readAsText(file);
 }
+
+
+
+// Example usage (assuming file input is how you're loading data)
+const fileInput = document.getElementById('fileInput');
+fileInput.addEventListener('change', handleFileSelect);
