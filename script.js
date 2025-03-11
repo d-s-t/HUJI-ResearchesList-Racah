@@ -133,8 +133,5 @@ function handleFileSelect(event) {
     reader.readAsText(file);
 }
 
-
-
-// Example usage (assuming file input is how you're loading data)
 const fileInput = document.getElementById('fileInput');
 fileInput.addEventListener('change', handleFileSelect);
