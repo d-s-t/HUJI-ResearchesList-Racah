@@ -119,7 +119,7 @@ function filterTable(originalData) {
     const tbody = table.querySelector('tbody')
 
     const filteredData = originalData.filter(person => {
-        const titleMatch = titleFilterValue === "<all>" || (person.professionalTitle === titleFilterValue);
+        const titleMatch = titleFilterValue === "<all>" || ((person.professionalTitle || "") === titleFilterValue);
         const researchMatch = researchFilterValue === "" || (person.researchArea || []).some(area => area.toLowerCase().startsWith(researchFilterValue));
         return titleMatch && researchMatch;
     });
