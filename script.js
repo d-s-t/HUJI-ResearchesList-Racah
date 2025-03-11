@@ -16,7 +16,8 @@ function createTableFromObjects(data) {
         { text: "Phone", key: "phone" },
         { text: "Address", key: "address" },
         { text: "Note", key: "note" },
-        { text: "Research Area", key: "researchArea" }
+        { text: "Research Area", key: "researchArea" },
+        { text: "", key: "remove", sortable: false }
     ].map(header => {
         const th = document.createElement('th');
 
@@ -39,6 +40,10 @@ function createTableFromObjects(data) {
             input.addEventListener('input', () => filterTable(data));
         } else if (header.text === "Note") {
             const input = createNoteFilter();
+            filterContainer.appendChild(input);
+            input.addEventListener('input', () => filterTable(data));
+        } else if (header.text === "Name") {
+            const input = createNameFilter();
             filterContainer.appendChild(input);
             input.addEventListener('input', () => filterTable(data));
         }
@@ -119,7 +124,7 @@ function createResearchAreaFilter() {
     const input = document.createElement('input');
     input.id = 'research-filter';
     input.type = 'text';
-    input.placeholder = "Filter..."; // Shorter placeholder
+    input.placeholder = "Filter...";
     return input;
 }
 
@@ -127,7 +132,15 @@ function createNoteFilter() {
     const input = document.createElement('input');
     input.id = 'note-filter';
     input.type = 'text';
-    input.placeholder = "Filter..."; // Shorter placeholder
+    input.placeholder = "Filter...";
+    return input;
+}
+
+function createNameFilter() {
+    const input = document.createElement('input');
+    input.id = 'name-filter';
+    input.type = 'text';
+    input.placeholder = "Filter...";
     return input;
 }
 
@@ -143,15 +156,18 @@ function filterTable(originalData) {
     const titleFilter = document.getElementById('title-filter'); 
     const researchFilter = document.getElementById('research-filter');
     const noteFilter = document.getElementById('note-filter');
+    const nameFilter = document.getElementById('name-filter');
     const titleFilterValue = titleFilter?.value || "<all>";
     const researchFilterValue = new RegExp(researchFilter?.value, 'i') || /.*/;
     const noteFilterValue = new RegExp(noteFilter?.value, 'i') || /.*/;
+    const nameFilterValue = new RegExp(nameFilter?.value, 'i') || /.*/;
 
     const filteredData = originalData.filter(person => {
         const titleMatch = titleFilterValue === "<all>" || ((person.professionalTitle || "") === titleFilterValue);
         const researchMatch = (person.researchArea || []).some(area => researchFilterValue.test(area));
         const noteMatch = noteFilterValue.test(person.note || '');
-        return titleMatch && researchMatch && noteMatch;
+        const nameMatch = nameFilterValue.test(person.name || '');
+        return titleMatch && researchMatch && noteMatch && nameMatch;
     });
 
     populateTbody(tbody, filteredData);
@@ -159,7 +175,7 @@ function filterTable(originalData) {
 
 function populateTbody(tbody, data) {
     tbody.innerHTML = '';
-    data.forEach(person => {
+    data.forEach((person, index) => {
         const row = tbody.insertRow();
 
         const photoCell = row.insertCell();
@@ -168,7 +184,6 @@ function populateTbody(tbody, data) {
             photoImg.src = person.photo;
             photoImg.alt = person.name || "";
             photoImg.width = 50;
-            // photoImg.height = 50;
             photoCell.appendChild(photoImg);
         }
 
@@ -219,6 +234,18 @@ function populateTbody(tbody, data) {
             span.textContent = area;
             researchCell.appendChild(span);
         });
+
+        const removeCell = row.insertCell();
+        const removeButton = document.createElement('span');
+        removeButton.innerHTML = "&#10060;";
+        removeButton.classList.add('remove-button');
+        removeButton.addEventListener('click', () => {
+            if (confirm("Are you sure you want to remove this entry?")) {
+                data.splice(index, 1);
+                populateTbody(tbody, data);
+            }
+        });
+        removeCell.appendChild(removeButton);
     });
 }
 

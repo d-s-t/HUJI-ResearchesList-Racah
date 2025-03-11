@@ -33,6 +33,7 @@ th,
 td {
     white-space: nowrap;
 }
+
 .research-tags span {
     display: inline-block; /* Instead of relying on the parent's flex display */
     margin-right: 5px;
@@ -44,7 +45,37 @@ td {
     font-size: 0.9em;
 }
 
-.research-tags { /* Remove the display:flex related properties */
+.research-tags { 
     gap: 2px;
-    align-items: flex-start; /*  No longer needed*/
+    align-items: flex-start; 
+}
+
+.remove-button {
+    cursor: pointer;
+    color: red;
+    font-size: 1.2em;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+}
+
+.remove-button:hover {
+    color: darkred;
+}
+
+input[type="text"] {
+    width: 100px;
+    padding: 1px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 1em;
+}
+
+select {
+    max-width: 100px;
+    padding: 1px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 1em;
 }
