@@ -233,15 +233,27 @@ function handleFileSelect(event) {
     reader.readAsText(file);
 }
 
-function saveData(data) {
+async function saveData(data) {
     const json = JSON.stringify(data, null, 2);
     const blob = new Blob([json], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'updated_data.json';
-    a.click();
-    URL.revokeObjectURL(url);
+
+    const options = {
+        types: [
+            {
+                description: 'JSON Files',
+                accept: { 'application/json': ['.json'] },
+            },
+        ],
+    };
+
+    try {
+        const handle = await window.showSaveFilePicker(options);
+        const writable = await handle.createWritable();
+        await writable.write(blob);
+        await writable.close();
+    } catch (error) {
+        console.error('Error saving file:', error);
+    }
 }
 
 const fileInput = document.getElementById('fileInput');
