@@ -7,50 +7,56 @@ function createTableFromObjects(data) {
     const thead = table.createTHead();
     const tbody = table.createTBody();
     const headerRow = thead.insertRow();
-
-    const headers = ["Name", "Title", "Email", "Website", "Phone", "Address", "Note", "Research Area"].map(headerText => {
+    const headers = [
+        { text: "Name", key: "name" },
+        { text: "Title", key: "professionalTitle" },
+        { text: "Email", key: "email" },
+        { text: "Website", key: "website" },
+        { text: "Phone", key: "phone" },
+        { text: "Address", key: "address" },
+        { text: "Note", key: "note" },
+        { text: "Research Area", key: "researchArea" }
+    ].map(header => {
         const th = document.createElement('th');
 
-        if (headerText === "Title") {
+        if (header.text === "Title") {
             const label = document.createElement('label');
-            label.textContent = headerText;
+            label.textContent = header.text;
             th.appendChild(label);
             const select = createTitleFilter(data);
             th.appendChild(select);
             select.addEventListener('change', () => filterTable(data));
-        } else if (headerText === "Research Area") {
+        } else if (header.text === "Research Area") {
             const label = document.createElement('label');
-            label.textContent = headerText;
+            label.textContent = header.text;
             th.appendChild(label);
             const input = createResearchAreaFilter();
             th.appendChild(input);
             input.addEventListener('input', () => filterTable(data));
-        } else if (headerText === "Note") {
+        } else if (header.text === "Note") {
             const label = document.createElement('label');
-            label.textContent = headerText;
+            label.textContent = header.text;
             th.appendChild(label);
             const input = createNoteFilter();
             th.appendChild(input);
             input.addEventListener('input', () => filterTable(data));
         } else {
-            th.textContent = headerText;
+            th.textContent = header.text;
         }
         headerRow.appendChild(th);
-        return th;
+        return { th, key: header.key };
     });
 
     populateTbody(tbody, data);
 
-    headers.forEach((header, columnIndex) => {
-        const labels = header.getElementsByTagName('label');
-        if(labels.length > 0) {
-            header = labels[0];
-        }
+    headers.forEach(({ th, key }) => {
+        const labels = th.getElementsByTagName('label');
+        const header = labels.length > 0 ? labels[0] : th;
         header.addEventListener('click', () => {
             const sortDirection = header.dataset.sortDirection || 'asc';
-            const sortedData = [...data].sort((a, b) => {
-                const valueA = getValueForSorting(a, columnIndex);
-                const valueB = getValueForSorting(b, columnIndex);
+            const sortedData = data.sort((a, b) => {
+                const valueA = getValueForSorting(a, key);
+                const valueB = getValueForSorting(b, key);
 
                 if (valueA < valueB) {
                     return sortDirection === 'asc' ? -1 : 1;
@@ -63,31 +69,30 @@ function createTableFromObjects(data) {
 
             populateTbody(tbody, sortedData);
             header.dataset.sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-
         });
     });
 
     return table;
 }
 
-function getValueForSorting(person, columnIndex) {
-    switch (columnIndex) {
-        case 0:
+function getValueForSorting(person, key) {
+    switch (key) {
+        case "name":
             return person.name ? person.name.toLowerCase() : '';
-        case 1:
+        case "professionalTitle":
             return person.professionalTitle || '';
-        case 2:
+        case "email":
             return person.contact && person.contact.email || '';
-        case 3:
+        case "website":
             return person.contact && person.contact.website || '';
-        case 4:
+        case "phone":
             return person.contact && person.contact.phone || '';
-        case 5:
+        case "address":
             return person.contact && person.contact.address || '';
-        case 6:
-            return person.researchArea ? person.researchArea.join(', ') : '';
-        case 7:
+        case "note":
             return person.note || '';
+        case "researchArea":
+            return person.researchArea ? person.researchArea.join(', ') : '';
         default:
             return '';
     }
