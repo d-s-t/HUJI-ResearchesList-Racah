@@ -164,7 +164,7 @@ function filterTable(originalData) {
 
     const filteredData = originalData.filter(person => {
         const titleMatch = titleFilterValue === "<all>" || ((person.professionalTitle || "") === titleFilterValue);
-        const researchMatch = (person.researchArea || []).some(area => researchFilterValue.test(area));
+        const researchMatch = !researchFilter?.value || (person.researchArea || []).some(area => researchFilterValue.test(area));
         const noteMatch = noteFilterValue.test(person.note || '');
         const nameMatch = nameFilterValue.test(person.name || '');
         return titleMatch && researchMatch && noteMatch && nameMatch;
