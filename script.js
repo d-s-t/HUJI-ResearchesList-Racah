@@ -8,7 +8,7 @@ function createTableFromObjects(data) {
     const tbody = table.createTBody();
     const headerRow = thead.insertRow();
 
-    const headers = ["Name", "Title", "Email", "Website", "Phone", "Address", "Research Area"].map(headerText => {
+    const headers = ["Name", "Title", "Email", "Website", "Phone", "Address", "Note", "Research Area"].map(headerText => {
         const th = document.createElement('th');
 
         if (headerText === "Title") {
@@ -23,6 +23,13 @@ function createTableFromObjects(data) {
             label.textContent = headerText;
             th.appendChild(label);
             const input = createResearchAreaFilter();
+            th.appendChild(input);
+            input.addEventListener('input', () => filterTable(data));
+        } else if (headerText === "Note") {
+            const label = document.createElement('label');
+            label.textContent = headerText;
+            th.appendChild(label);
+            const input = createNoteFilter();
             th.appendChild(input);
             input.addEventListener('input', () => filterTable(data));
         } else {
@@ -79,6 +86,8 @@ function getValueForSorting(person, columnIndex) {
             return person.contact && person.contact.address || '';
         case 6:
             return person.researchArea ? person.researchArea.join(', ') : '';
+        case 7:
+            return person.note || '';
         default:
             return '';
     }
@@ -109,6 +118,14 @@ function createResearchAreaFilter() {
     return input;
 }
 
+function createNoteFilter() {
+    const input = document.createElement('input');
+    input.id = 'note-filter';
+    input.type = 'text';
+    input.placeholder = "Filter..."; // Shorter placeholder
+    return input;
+}
+
 function filterTable(originalData) {
     const tableContainer = document.getElementById('table-container')
     const table = tableContainer.querySelector('table')
@@ -120,13 +137,16 @@ function filterTable(originalData) {
 
     const titleFilter = document.getElementById('title-filter'); 
     const researchFilter = document.getElementById('research-filter');
+    const noteFilter = document.getElementById('note-filter');
     const titleFilterValue = titleFilter?.value || "<all>";
     const researchFilterValue = new RegExp(researchFilter?.value, 'i') || /.*/;
+    const noteFilterValue = new RegExp(noteFilter?.value, 'i') || /.*/;
 
     const filteredData = originalData.filter(person => {
         const titleMatch = titleFilterValue === "<all>" || ((person.professionalTitle || "") === titleFilterValue);
         const researchMatch = (person.researchArea || []).some(area => researchFilterValue.test(area));
-        return titleMatch && researchMatch;
+        const noteMatch = noteFilterValue.test(person.note || '');
+        return titleMatch && researchMatch && noteMatch;
     });
 
     populateTbody(tbody, filteredData);
@@ -139,8 +159,9 @@ function populateTbody(tbody, data) {
 
         const nameCell = row.insertCell();
         const nameLink = document.createElement('a');
+        nameLink.target = '_blank';
         nameLink.href = person.profileLink || "#";
-        nameLink.textContent = person.name || "";
+        nameLink.textContent = person.name || "-";
         nameCell.appendChild(nameLink);
 
         row.insertCell().textContent = person.professionalTitle || "";
@@ -156,6 +177,7 @@ function populateTbody(tbody, data) {
         const websiteCell = row.insertCell();
         if (person.contact && person.contact.website) {
             const websiteLink = document.createElement('a');
+            websiteLink.target = '_blank';
             websiteLink.href = person.contact.website;
             websiteLink.textContent = "Website";
             websiteCell.appendChild(websiteLink);
@@ -163,6 +185,15 @@ function populateTbody(tbody, data) {
 
         row.insertCell().textContent = person.contact && person.contact.phone || "";
         row.insertCell().textContent = person.contact && person.contact.address || "";
+
+        const noteCell = row.insertCell();
+        const noteInput = document.createElement('input');
+        noteInput.type = 'text';
+        noteInput.value = person.note || "";
+        noteInput.addEventListener('input', (event) => {
+            person.note = event.target.value;
+        });
+        noteCell.appendChild(noteInput);
 
         const researchCell = row.insertCell();
         researchCell.classList.add("research-tags");
