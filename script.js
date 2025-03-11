@@ -1,3 +1,26 @@
+let isDirty = false;
+
+window.addEventListener('beforeunload', (event) => {
+    if (isDirty) {
+        event.preventDefault();
+        event.returnValue = '';
+    }
+});
+
+window.addEventListener('keydown', (event) => {
+    if (event.ctrlKey && event.key === 's') {
+        event.preventDefault();
+        const saveButton = document.getElementById('saveButton');
+        if (saveButton && saveButton.style.display !== 'none') {
+            saveButton.click();
+        }
+    }
+});
+
+function markDirty() {
+    isDirty = true;
+}
+
 function createTableFromObjects(data) {
     if (!data || data.length === 0) {
         return "No data to display.";
@@ -222,6 +245,7 @@ function populateTbody(tbody, data) {
         noteInput.value = person.note || "";
         noteInput.addEventListener('input', (event) => {
             person.note = event.target.value;
+            markDirty();
         });
         noteCell.appendChild(noteInput);
 
@@ -243,6 +267,7 @@ function populateTbody(tbody, data) {
             if (confirm("Are you sure you want to remove this entry?")) {
                 data.splice(index, 1);
                 populateTbody(tbody, data);
+                markDirty();
             }
         });
         removeCell.appendChild(removeButton);
@@ -270,7 +295,10 @@ function handleFileSelect(event) {
         tableContainer.appendChild(table);
         fileInput.style.display = 'none';
         saveButton.style.display = 'block';
-        saveButton.addEventListener('click', () => saveData(data));
+        saveButton.addEventListener('click', () => {
+            saveData(data);
+            isDirty = false;
+        });
     };
 
     reader.readAsText(file);
@@ -301,3 +329,23 @@ async function saveData(data) {
 
 const fileInput = document.getElementById('fileInput');
 fileInput.addEventListener('change', handleFileSelect);
+
+const dropZone = document.getElementById('drop-zone');
+dropZone.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    dropZone.classList.add('dragover');
+});
+
+dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('dragover');
+});
+
+dropZone.addEventListener('drop', (event) => {
+    event.preventDefault();
+    dropZone.classList.remove('dragover');
+    const file = event.dataTransfer.files[0];
+    if (file) {
+        fileInput.files = event.dataTransfer.files;
+        handleFileSelect({ target: fileInput });
+    }
+});

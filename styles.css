@@ -1,3 +1,11 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -78,4 +86,29 @@ select {
     border: 1px solid #ccc;
     border-radius: 2px;
     font-size: 1em;
+}
+
+.drop-zone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 99.5%;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.drop-zone.dragover {
+    background-color: #f0f0f0;
+}
+
+.file-label {
+    font-size: 1.5em;
+    color: #333;
+    cursor: pointer;
+}
+
+#fileInput {
+    display: none;
 }
