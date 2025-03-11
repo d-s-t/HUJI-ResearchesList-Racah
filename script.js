@@ -112,6 +112,7 @@ function getValueForSorting(person, columnIndex) {
 function handleFileSelect(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
+    const fileInput = event.target; // Get the file input element
 
     reader.onload = (e) => {
         try {
@@ -119,10 +120,12 @@ function handleFileSelect(event) {
             const table = createTableFromObjects(data);
             const tableContainer = document.getElementById('table-container');
             tableContainer.appendChild(table);
+            fileInput.style.display = 'none'; 
         } catch (error) {
             console.error("Error parsing JSON:", error);
-             const tableContainer = document.getElementById('table-container');
+            const tableContainer = document.getElementById('table-container');
             tableContainer.innerHTML = "<p>Error parsing the JSON file.</p>";
+            fileInput.value = '';
         }
 
     };
