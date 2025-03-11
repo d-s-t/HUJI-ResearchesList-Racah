@@ -17,46 +17,46 @@ function createTableFromObjects(data) {
 
     function populateTbody(data) {
         tbody.innerHTML = '';
-    data.forEach(person => {
-        const row = tbody.insertRow();
+        data.forEach(person => {
+            const row = tbody.insertRow();
 
-        const nameCell = row.insertCell();
-        const nameLink = document.createElement('a');
+            const nameCell = row.insertCell();
+            const nameLink = document.createElement('a');
             nameLink.href = person.profileLink || "#"; 
             nameLink.textContent = person.name || "";
-        nameCell.appendChild(nameLink);
+            nameCell.appendChild(nameLink);
 
-        row.insertCell().textContent = person.professionalTitle || "";
+            row.insertCell().textContent = person.professionalTitle || "";
 
             const emailCell = row.insertCell();
             if (person.contact && person.contact.email) {
-             const emailLink = document.createElement('a');
-             emailLink.href = `mailto:${person.contact.email}`;
-             emailLink.textContent = person.contact.email;
-             emailCell.appendChild(emailLink);
-        }
+                const emailLink = document.createElement('a');
+                emailLink.href = `mailto:${person.contact.email}`;
+                emailLink.textContent = person.contact.email;
+                emailCell.appendChild(emailLink);
+            }
 
             const websiteCell = row.insertCell();
             if (person.contact && person.contact.website) {
-             const websiteLink = document.createElement('a');
-             websiteLink.href = person.contact.website;
+                const websiteLink = document.createElement('a');
+                websiteLink.href = person.contact.website;
                 websiteLink.textContent = "Website";
-             websiteCell.appendChild(websiteLink);
-        }
+                websiteCell.appendChild(websiteLink);
+            }
 
             row.insertCell().textContent = person.contact && person.contact.phone || ""; //check that contact and phone exists
             row.insertCell().textContent = person.contact && person.contact.address || ""; //check that contact and address exists
 
 
-        const researchCell = row.insertCell();
+            const researchCell = row.insertCell();
             researchCell.classList.add("research-tags");
 
             (person.researchArea || []).forEach(area => {
-            const span = document.createElement('span');
-            span.textContent = area;
-            researchCell.appendChild(span);
+                const span = document.createElement('span');
+                span.textContent = area;
+                researchCell.appendChild(span);
+            });
         });
-    });
     }
 
     populateTbody(data);
