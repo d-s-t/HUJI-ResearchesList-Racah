@@ -3,41 +3,37 @@ table {
     border-collapse: collapse;
     font-family: sans-serif;
     table-layout: auto;
-  }
-  
-  th, td {
+}
+
+th, td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-  }
-  
-  th {
+}
+
+th {
     background-color: #f2f2f2;
     font-weight: bold;
-  }
-  
-  tr:nth-child(even) {
+}
+
+tr:nth-child(even) {
     background-color: #f9f9f9;
-  }
-  
-  a {
+}
+
+a {
     text-decoration: none;
     color: #337ab7;
-  }
-  
-  a:hover {
+}
+
+a:hover {
     text-decoration: underline;
-  }
-  th,
-  td {
+}
+
+th,
+td {
     white-space: nowrap;
-  }
-  th:last-child,
-  td:last-child {
-    white-space: normal;
-  }
-  
-  .research-tags span {
+}
+.research-tags span {
     display: inline-block; /* Instead of relying on the parent's flex display */
     margin-right: 5px;
     margin-top: 2.5px;
@@ -47,6 +43,7 @@ table {
     border-radius: 3px;
     font-size: 0.9em;
 }
+
 .research-tags { /* Remove the display:flex related properties */
     gap: 2px;
     align-items: flex-start; /*  No longer needed*/

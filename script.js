@@ -33,6 +33,7 @@ function createTableFromObjects(data) {
             filterContainer.appendChild(select);
             select.addEventListener('change', () => filterTable(data));
         } else if (header.text === "Research Area") {
+            th.style.whiteSpace = 'normal';
             const input = createResearchAreaFilter();
             filterContainer.appendChild(input);
             input.addEventListener('input', () => filterTable(data));
@@ -211,6 +212,7 @@ function populateTbody(tbody, data) {
 
         const researchCell = row.insertCell();
         researchCell.classList.add("research-tags");
+        researchCell.style.whiteSpace = 'normal';
 
         (person.researchArea || []).forEach(area => {
             const span = document.createElement('span');
