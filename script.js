@@ -157,7 +157,7 @@ function filterTable(originalData) {
     const researchFilter = document.getElementById('research-filter');
     const noteFilter = document.getElementById('note-filter');
     const nameFilter = document.getElementById('name-filter');
-    const titleFilterValue = titleFilter?.value || "<all>";
+    const titleFilterValue = titleFilter?.value;
     const researchFilterValue = new RegExp(researchFilter?.value, 'i') || /.*/;
     const noteFilterValue = new RegExp(noteFilter?.value, 'i') || /.*/;
     const nameFilterValue = new RegExp(nameFilter?.value, 'i') || /.*/;
