@@ -3,12 +3,11 @@ let isDirty = false;
 window.addEventListener('beforeunload', (event) => {
     if (isDirty) {
         event.preventDefault();
-        event.returnValue = '';
     }
 });
 
 window.addEventListener('keydown', (event) => {
-    if (event.ctrlKey && event.key === 's') {
+    if (event.ctrlKey && event.key === 's' && isDirty) {
         event.preventDefault();
         const saveButton = document.getElementById('saveButton');
         if (saveButton && saveButton.style.display !== 'none') {
@@ -19,6 +18,16 @@ window.addEventListener('keydown', (event) => {
 
 function markDirty() {
     isDirty = true;
+    if (!document.title.startsWith('• ')) {
+        document.title = '• ' + document.title;
+    }
+}
+
+function markClean() {
+    isDirty = false;
+    if (document.title.startsWith('• ')) {
+        document.title = document.title.substring(2);
+    }
 }
 
 function createTableFromObjects(data) {
@@ -277,7 +286,6 @@ function populateTbody(tbody, data) {
 function handleFileSelect(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
-    const fileInput = event.target;
     const tableContainer = document.getElementById('table-container');
     const saveButton = document.getElementById('saveButton');
 
@@ -293,11 +301,10 @@ function handleFileSelect(event) {
         }
         const table = createTableFromObjects(data);
         tableContainer.appendChild(table);
-        fileInput.style.display = 'none';
+        dropZone.style.display = 'none';
         saveButton.style.display = 'block';
         saveButton.addEventListener('click', () => {
             saveData(data);
-            isDirty = false;
         });
     };
 
@@ -322,6 +329,7 @@ async function saveData(data) {
         const writable = await handle.createWritable();
         await writable.write(blob);
         await writable.close();
+        markClean();
     } catch (error) {
         console.error('Error saving file:', error);
     }
@@ -345,7 +353,6 @@ dropZone.addEventListener('drop', (event) => {
     dropZone.classList.remove('dragover');
     const file = event.dataTransfer.files[0];
     if (file) {
-        fileInput.files = event.dataTransfer.files;
-        handleFileSelect({ target: fileInput });
+        handleFileSelect({ target: { files: [file] } });
     }
 });
