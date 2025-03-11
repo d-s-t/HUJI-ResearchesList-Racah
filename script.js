@@ -211,6 +211,7 @@ function handleFileSelect(event) {
     const reader = new FileReader();
     const fileInput = event.target;
     const tableContainer = document.getElementById('table-container');
+    const saveButton = document.getElementById('saveButton');
 
     reader.onload = (e) => {
         var data;
@@ -225,10 +226,22 @@ function handleFileSelect(event) {
         const table = createTableFromObjects(data);
         tableContainer.appendChild(table);
         fileInput.style.display = 'none';
-
+        saveButton.style.display = 'block';
+        saveButton.addEventListener('click', () => saveData(data));
     };
 
     reader.readAsText(file);
+}
+
+function saveData(data) {
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'updated_data.json';
+    a.click();
+    URL.revokeObjectURL(url);
 }
 
 const fileInput = document.getElementById('fileInput');
