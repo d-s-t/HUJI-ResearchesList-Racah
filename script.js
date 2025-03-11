@@ -8,10 +8,11 @@ function createTableFromObjects(data) {
     const tbody = table.createTBody();
     const headerRow = thead.insertRow();
     const headers = [
+        { text: "Photo", key: "photo", sortable: false },
         { text: "Name", key: "name" },
         { text: "Title", key: "professionalTitle" },
         { text: "Email", key: "email" },
-        { text: "Website", key: "website" },
+        { text: "Website", key: "website", sortable: false },
         { text: "Phone", key: "phone" },
         { text: "Address", key: "address" },
         { text: "Note", key: "note" },
@@ -19,37 +20,35 @@ function createTableFromObjects(data) {
     ].map(header => {
         const th = document.createElement('th');
 
+        const label = document.createElement('label');
+        label.textContent = header.text;
+        th.appendChild(label);
+        const filterContainer = document.createElement('div');
+        filterContainer.style.display = 'flex';
+        filterContainer.style.flexDirection = 'column';
+        th.appendChild(filterContainer);
+
         if (header.text === "Title") {
-            const label = document.createElement('label');
-            label.textContent = header.text;
-            th.appendChild(label);
             const select = createTitleFilter(data);
-            th.appendChild(select);
+            filterContainer.appendChild(select);
             select.addEventListener('change', () => filterTable(data));
         } else if (header.text === "Research Area") {
-            const label = document.createElement('label');
-            label.textContent = header.text;
-            th.appendChild(label);
             const input = createResearchAreaFilter();
-            th.appendChild(input);
+            filterContainer.appendChild(input);
             input.addEventListener('input', () => filterTable(data));
         } else if (header.text === "Note") {
-            const label = document.createElement('label');
-            label.textContent = header.text;
-            th.appendChild(label);
             const input = createNoteFilter();
-            th.appendChild(input);
+            filterContainer.appendChild(input);
             input.addEventListener('input', () => filterTable(data));
-        } else {
-            th.textContent = header.text;
         }
         headerRow.appendChild(th);
-        return { th, key: header.key };
+        return { th, key: header.key, sortable: header.sortable !== false };
     });
 
     populateTbody(tbody, data);
 
-    headers.forEach(({ th, key }) => {
+    headers.forEach(({ th, key, sortable }) => {
+        if (!sortable) return;
         const labels = th.getElementsByTagName('label');
         const header = labels.length > 0 ? labels[0] : th;
         header.addEventListener('click', () => {
@@ -161,6 +160,16 @@ function populateTbody(tbody, data) {
     tbody.innerHTML = '';
     data.forEach(person => {
         const row = tbody.insertRow();
+
+        const photoCell = row.insertCell();
+        if (person.photo){
+            const photoImg = document.createElement('img');
+            photoImg.src = person.photo;
+            photoImg.alt = person.name || "";
+            photoImg.width = 50;
+            // photoImg.height = 50;
+            photoCell.appendChild(photoImg);
+        }
 
         const nameCell = row.insertCell();
         const nameLink = document.createElement('a');
