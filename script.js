@@ -121,11 +121,11 @@ function filterTable(originalData) {
     const titleFilter = document.getElementById('title-filter'); 
     const researchFilter = document.getElementById('research-filter');
     const titleFilterValue = titleFilter?.value || "<all>";
-    const researchFilterValue = researchFilter?.value.toLowerCase() || "";
- 
+    const researchFilterValue = new RegExp(researchFilter?.value, 'i') || /.*/;
+
     const filteredData = originalData.filter(person => {
         const titleMatch = titleFilterValue === "<all>" || ((person.professionalTitle || "") === titleFilterValue);
-        const researchMatch = researchFilterValue === "" || (person.researchArea || []).some(area => area.toLowerCase().startsWith(researchFilterValue));
+        const researchMatch = (person.researchArea || []).some(area => researchFilterValue.test(area));
         return titleMatch && researchMatch;
     });
 
