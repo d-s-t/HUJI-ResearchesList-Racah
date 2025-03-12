@@ -169,20 +169,8 @@ select {
     background-color: #286090;
 }
 
-/* .drop-zone .file-label::before {
-    content: url('path/to/icon.png'); 
-    display: block;
-    margin-bottom: 10px;
-} */
-
 .drop-zone p {
     margin: 0;
-}
-
-#racah-link {
-    text-decoration: none;
-    color: white;
-    margin-top: 10px;
 }
 
 #racah-link:hover {
