@@ -43,7 +43,7 @@ td {
 }
 
 .research-tags span {
-    display: inline-block; /* Instead of relying on the parent's flex display */
+    display: inline-block;
     margin-right: 5px;
     margin-top: 2.5px;
     margin-bottom: 2.5px;
@@ -90,6 +90,7 @@ select {
 
 .drop-zone {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 99.5%;
@@ -97,6 +98,95 @@ select {
     border-radius: 10px;
     text-align: center;
     transition: background-color 0.3s;
+    font-family: Arial, sans-serif;
+}
+
+.drop-zone .file-upload{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.drop-zone .preset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.drop-zone .separator {
+    margin: 0 20px;
+    font-weight: bold;
+    position: relative;
+}
+
+.drop-zone .separator::before,
+.drop-zone .separator::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 20px;
+    background-color: #ccc;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.drop-zone .separator::before {
+    top: -25px;
+}
+
+.drop-zone .separator::after {
+    bottom: -25px;
+}
+
+.drop-zone .file-upload::after {
+    content: "or drop file here";
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.drop-zone .file-label {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #337ab7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+}
+
+.drop-zone .file-label:hover {
+    background-color: #286090;
+}
+
+/* .drop-zone .file-label::before {
+    content: url('path/to/icon.png'); 
+    display: block;
+    margin-bottom: 10px;
+} */
+
+.drop-zone p {
+    margin: 0;
+}
+
+#racah-link {
+    text-decoration: none;
+    color: white;
+    margin-top: 10px;
+}
+
+#racah-link:hover {
+    text-decoration: underline;
 }
 
 .drop-zone.dragover {

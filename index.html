@@ -7,9 +7,15 @@
 </head>
 <body>
     <div id="drop-zone" class="drop-zone">
-        <label for="fileInput" class="file-label">Click or Drag & Drop JSON File Here</label>
-        <input type="file" id="fileInput" accept=".json" />
-        <a href="#" id="racah-link" style="display: none;">Racah Researches List</a>
+        <div class="file-upload">
+            <button for="fileInput" class="file-label">CHOOSE LOCAL FILE</button>
+            <input type="file" id="fileInput" accept=".json" />
+        </div>
+        <div class="separator">OR</div>
+        <div class="preset">
+            <h3>Choose a preset:</h3>
+            <a href="#" id="racah-link">Racah Researches</a>
+        </div>
     </div>
     <button id="saveButton" style="display: none;">Save</button>
     <div id="table-container"></div>
