@@ -335,6 +335,38 @@ async function saveData(data) {
     }
 }
 
+async function loadRacahResearches() {
+    try {
+        const response = await fetch('racah.json');
+        const data = await response.json();
+        const tableContainer = document.getElementById('table-container');
+        const table = createTableFromObjects(data);
+        tableContainer.appendChild(table);
+        dropZone.style.display = 'none';
+        const saveButton = document.getElementById('saveButton');
+        saveButton.style.display = 'block';
+        saveButton.addEventListener('click', () => {
+            saveData(data);
+        });
+    } catch (error) {
+        console.error('Error loading Racah Researches:', error);
+    }
+}
+
+async function checkRacahFileExists() {
+    try {
+        const response = await fetch('racah.json', { method: 'HEAD' });
+        if (response.ok) {
+            document.getElementById('racah-link').style.display = 'inline';
+        } else {
+            document.getElementById('racah-link').style.display = 'none';
+        }
+    } catch (error) {
+        console.error('Error checking Racah Researches file:', error);
+        document.getElementById('racah-link').style.display = 'none';
+    }
+}
+
 const fileInput = document.getElementById('fileInput');
 fileInput.addEventListener('change', handleFileSelect);
 
@@ -355,4 +387,11 @@ dropZone.addEventListener('drop', (event) => {
     if (file) {
         handleFileSelect({ target: { files: [file] } });
     }
+});
+
+document.addEventListener('DOMContentLoaded', checkRacahFileExists);
+
+document.getElementById('racah-link').addEventListener('click', (event) => {
+    event.preventDefault();
+    loadRacahResearches();
 });
