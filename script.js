@@ -342,45 +342,34 @@ async function saveData(data) {
     }
 }
 
-async function loadRacahResearches() {
-    try {
-        const response = await fetch('racah.json');
-        const data = await response.json();
-        const tableContainer = document.getElementById('table-container');
-        const table = createTableFromObjects(data);
-        tableContainer.appendChild(table);
-        dropZone.style.display = 'none';
-        const saveButton = document.getElementById('saveButton');
-        saveButton.style.display = 'block';
-        saveButton.addEventListener('click', () => {
-            saveData(data);
-        });
-    } catch (error) {
-        console.error('Error loading Racah Researches:', error);
-    }
-}
-
 async function addPresets() {
     const presets = [
-        { id: 'racah-link', url: 'racah.json', name: 'Racah Researches' }
+        { url: 'racah.json', name: 'Racah Researches' }
         // Add more presets here if needed
     ];
 
     let hasPresets = false;
+    const presetList = document.getElementById('preset-list');
+    presetList.innerHTML = ''; // Clear existing items
 
     for (const preset of presets) {
         try {
             const response = await fetch(preset.url, { method: 'HEAD' });
-            const presetLink = document.getElementById(preset.id);
             if (response.ok) {
-                presetLink.style.display = 'inline';
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = '#';
+                link.textContent = preset.name;
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    loadPresetData(preset.url);
+                });
+                listItem.appendChild(link);
+                presetList.appendChild(listItem);
                 hasPresets = true;
-            } else {
-                presetLink.style.display = 'none';
             }
         } catch (error) {
             console.error(`Error checking preset file (${preset.name}):`, error);
-            document.getElementById(preset.id).style.display = 'none';
         }
     }
 
@@ -392,6 +381,24 @@ async function addPresets() {
     } else {
         presetSection.style.display = 'none';
         separator.style.display = 'none';
+    }
+}
+
+async function loadPresetData(url) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const tableContainer = document.getElementById('table-container');
+        const table = createTableFromObjects(data);
+        tableContainer.appendChild(table);
+        dropZone.style.display = 'none';
+        const saveButton = document.getElementById('saveButton');
+        saveButton.style.display = 'block';
+        saveButton.addEventListener('click', () => {
+            saveData(data);
+        });
+    } catch (error) {
+        console.error(`Error loading preset data from ${url}:`, error);
     }
 }
 
@@ -418,10 +425,5 @@ dropZone.addEventListener('drop', (event) => {
 });
 
 document.addEventListener('DOMContentLoaded', addPresets);
-
-document.getElementById('racah-link').addEventListener('click', (event) => {
-    event.preventDefault();
-    loadRacahResearches();
-});
 
 dropZone.style.display = 'flex';
