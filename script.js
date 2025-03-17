@@ -44,7 +44,7 @@ function createTableFromObjects(data) {
         { text: "Name", key: "name" },
         { text: "Title", key: "professionalTitle" },
         { text: "Email", key: "email" },
-        { text: "Website", key: "website", sortable: false },
+        { text: "Website", key: "website" },
         { text: "Phone", key: "phone" },
         { text: "Address", key: "address" },
         { text: "Note", key: "note" },
