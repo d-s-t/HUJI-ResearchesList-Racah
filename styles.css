@@ -133,7 +133,7 @@ select {
     content: "";
     display: block;
     width: 1px;
-    height: 60px;
+    height: var(--separator-height);
     background-color: #ccc;
     position: absolute;
     left: 50%;
@@ -141,11 +141,11 @@ select {
 }
 
 .drop-zone .separator::before {
-    top: -25px;
+    top: var(--separator-margin);
 }
 
 .drop-zone .separator::after {
-    bottom: -25px;
+    bottom: var(--separator-margin);
 }
 
 .drop-zone .file-upload::after {
@@ -195,4 +195,9 @@ select {
 
 #fileInput {
     display: none;
+}
+
+:root {
+    --separator-height: 50px;
+    --separator-margin: calc(-5px - var(--separator-height));
 }
