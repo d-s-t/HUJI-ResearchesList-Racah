@@ -53,6 +53,11 @@ td {
     font-size: 0.9em;
 }
 
+.research-tags span:hover {
+    background-color: #99bbff;
+    cursor: pointer;
+}
+
 .research-tags { 
     gap: 2px;
     align-items: flex-start; 

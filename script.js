@@ -265,6 +265,13 @@ function populateTbody(tbody, data) {
         (person.researchArea || []).forEach(area => {
             const span = document.createElement('span');
             span.textContent = area;
+            span.addEventListener('click', () => {
+                const researchFilter = document.getElementById('research-filter');
+                if (researchFilter) {
+                    researchFilter.value = area;
+                    filterTable(data);
+                }
+            });
             researchCell.appendChild(span);
         });
 
