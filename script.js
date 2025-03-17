@@ -360,17 +360,38 @@ async function loadRacahResearches() {
     }
 }
 
-async function checkRacahFileExists() {
-    try {
-        const response = await fetch('racah.json', { method: 'HEAD' });
-        if (response.ok) {
-            document.getElementById('racah-link').style.display = 'inline';
-        } else {
-            document.getElementById('racah-link').style.display = 'none';
+async function addPresets() {
+    const presets = [
+        { id: 'racah-link', url: 'racah.json', name: 'Racah Researches' }
+        // Add more presets here if needed
+    ];
+
+    let hasPresets = false;
+
+    for (const preset of presets) {
+        try {
+            const response = await fetch(preset.url, { method: 'HEAD' });
+            const presetLink = document.getElementById(preset.id);
+            if (response.ok) {
+                presetLink.style.display = 'inline';
+                hasPresets = true;
+            } else {
+                presetLink.style.display = 'none';
+            }
+        } catch (error) {
+            console.error(`Error checking preset file (${preset.name}):`, error);
+            document.getElementById(preset.id).style.display = 'none';
         }
-    } catch (error) {
-        console.error('Error checking Racah Researches file:', error);
-        document.getElementById('racah-link').style.display = 'none';
+    }
+
+    const presetSection = document.querySelector('.preset');
+    const separator = document.querySelector('.separator');
+    if (hasPresets) {
+        presetSection.style.display = 'block';
+        separator.style.display = 'block';
+    } else {
+        presetSection.style.display = 'none';
+        separator.style.display = 'none';
     }
 }
 
@@ -396,9 +417,11 @@ dropZone.addEventListener('drop', (event) => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', checkRacahFileExists);
+document.addEventListener('DOMContentLoaded', addPresets);
 
 document.getElementById('racah-link').addEventListener('click', (event) => {
     event.preventDefault();
     loadRacahResearches();
 });
+
+dropZone.style.display = 'flex';
