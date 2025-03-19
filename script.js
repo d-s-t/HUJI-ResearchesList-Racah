@@ -35,12 +35,6 @@ function createTableFromObjects(data) {
     const tableContainer = document.getElementById('table-container');
     tableContainer.innerHTML = '';
     dropZone.style.display = 'none';
-    
-    const saveButton = document.getElementById('saveButton');
-    saveButton.style.display = 'block';
-    saveButton.addEventListener('click', () => {
-        saveData(data);
-    });
 
     if (!data || data.length === 0) {
         tableContainer.innerHTML = "No data to display.";
@@ -51,60 +45,77 @@ function createTableFromObjects(data) {
     const thead = table.createTHead();
     const tbody = table.createTBody();
     const headerRow = thead.insertRow();
+    const filterRow = thead.insertRow();
+    headerRow.__proto__.insertHeaderCell = function(){
+        const th = document.createElement("th");
+        this.appendChild(th);
+        return th;
+    };
+
+    function getSorter(label, key) {
+        return () => {
+            const sortDirection = label.dataset.sortDirection || 'asc';
+            const sortedData = data.sort((a, b) => {
+                const valueA = getValueForSorting(a, key);
+                const valueB = getValueForSorting(b, key);
+    
+                if (valueA < valueB) {
+                    return sortDirection === 'asc' ? -1 : 1;
+                }
+                if (valueA > valueB) {
+                    return sortDirection === 'asc' ? 1 : -1;
+                }
+                return 0;
+            });
+    
+            populateTbody(tbody, sortedData);
+            label.dataset.sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+        }
+    }
+
     [
-        { text: "Photo", key: "photo", sortable: false },
+        { text: "Photo", key: "photo", sortable: false, filter: () => createSaveButton(data) },
         { text: "Name", key: "name", filter: () => createNameFilter() },
+        { text: "Note", key: "note", filter: () => createNoteFilter() },
         { text: "Title", key: "professionalTitle", filter: () => createTitleFilter(data) },
         { text: "Email", key: "email" },
         { text: "Website", key: "website" },
         { text: "Phone", key: "phone" },
         { text: "Address", key: "address" },
-        { text: "Note", key: "note", filter: () => createNoteFilter() },
         { text: "Research Area", key: "researchArea", filter: () => createResearchAreaFilter() },
         { text: "", key: "remove", sortable: false }
-    ].map(header => {
-        const th = document.createElement('th');
-
-        const label = document.createElement('label');
+    ].forEach(header => {
+        const label = headerRow.insertHeaderCell();
         label.textContent = header.text;
-        th.appendChild(label);
+        if (header.sortable !== false) {
+            label.addEventListener('click', getSorter(label, header.key));
+            label.classList.add('sortable');
+        }
+        
+        const filterCell = filterRow.insertHeaderCell();
+        filterCell.tagName = 'th';
         if (header.filter) {
-            const filterContainer = document.createElement('div');
-            filterContainer.style.display = 'flex';
-            filterContainer.style.flexDirection = 'column';
-            th.appendChild(filterContainer);
             const filter = header.filter();
-            filterContainer.appendChild(filter);
+            filterCell.appendChild(filter);
             filter.addEventListener('change', () => populateTbody(tbody, data));
             filter.addEventListener('input', () => populateTbody(tbody, data));
         }
-        headerRow.appendChild(th);
-        if (header.sortable !== false) {
-            label.addEventListener('click', () => {
-                const sortDirection = label.dataset.sortDirection || 'asc';
-                const sortedData = data.sort((a, b) => {
-                    const valueA = getValueForSorting(a, header.key);
-                    const valueB = getValueForSorting(b, header.key);
-    
-                    if (valueA < valueB) {
-                        return sortDirection === 'asc' ? -1 : 1;
-                    }
-                    if (valueA > valueB) {
-                        return sortDirection === 'asc' ? 1 : -1;
-                    }
-                    return 0;
-                });
-    
-                populateTbody(tbody, sortedData);
-                label.dataset.sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-            });
-        }
-        return { th, key: header.key};
     });
 
     populateTbody(tbody, data);
 
     return table;
+}
+
+function createSaveButton(data) {
+    const saveButton = document.createElement('button');
+    saveButton.textContent = "Save";
+    saveButton.id = 'saveButton';
+    saveButton.addEventListener('click', () => {
+        saveData(data);
+    }
+    );
+    return saveButton;
 }
 
 function getValueForSorting(person, key) {
@@ -191,7 +202,8 @@ function filterTable(originalData) {
 
 function populateTbody(tbody, data) {
     tbody.innerHTML = '';
-    filterTable(data).forEach((person, index) => {
+    filterTable(data).forEach((person) => {
+        const index = data.indexOf(person);
         const row = tbody.insertRow();
 
         const photoCell = row.insertCell();
@@ -209,6 +221,14 @@ function populateTbody(tbody, data) {
         nameLink.href = person.profileLink || "#";
         nameLink.textContent = person.name || "-";
         nameCell.appendChild(nameLink);
+
+        const noteCell = row.insertCell();
+        const noteSpan = document.createElement('span');
+        noteSpan.textContent = person.note || "";
+        noteSpan.classList.add('note-span');
+        noteSpan.title = "Click to edit";
+        noteSpan.addEventListener('click', () => openNoteEditor(person, noteSpan));
+        noteCell.appendChild(noteSpan);
 
         row.insertCell().textContent = person.professionalTitle || "";
 
@@ -232,14 +252,6 @@ function populateTbody(tbody, data) {
 
         row.insertCell().textContent = person.contact && person.contact.phone || "";
         row.insertCell().textContent = person.contact && person.contact.address || "";
-
-        const noteCell = row.insertCell();
-        const noteSpan = document.createElement('span');
-        noteSpan.textContent = person.note || "";
-        noteSpan.classList.add('note-span');
-        noteSpan.title = "Click to edit";
-        noteSpan.addEventListener('click', () => openNoteEditor(person, noteSpan));
-        noteCell.appendChild(noteSpan);
 
         const researchCell = row.insertCell();
         researchCell.classList.add("research-tags");

@@ -17,6 +17,7 @@ th, td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    white-space: nowrap;
 }
 
 th {
@@ -35,11 +36,6 @@ a {
 
 a:hover {
     text-decoration: underline;
-}
-
-th,
-td {
-    white-space: nowrap;
 }
 
 .research-tags span {
@@ -222,4 +218,9 @@ td {
     font-size: 1em;
     font-family: Arial, sans-serif;
     text-wrap-mode: nowrap;
+}
+
+.sortable::after {
+    content: "⇅";
+    margin-left: 10px;
 }
