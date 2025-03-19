@@ -153,26 +153,23 @@ function createTitleFilter(data) {
 }
 
 function createResearchAreaFilter() {
-    const input = document.createElement('input');
-    input.id = 'research-filter';
-    input.type = 'text';
-    input.placeholder = "Filter...";
-    return input;
+    return createTextFilter('research-filter');
 }
 
 function createNoteFilter() {
-    const input = document.createElement('input');
-    input.id = 'note-filter';
-    input.type = 'text';
-    input.placeholder = "Filter...";
-    return input;
+    return createTextFilter('note-filter');
 }
 
 function createNameFilter() {
+    return createTextFilter('name-filter');
+}
+
+function createTextFilter(id){
     const input = document.createElement('input');
-    input.id = 'name-filter';
+    input.id = id;
     input.type = 'text';
     input.placeholder = "Filter...";
+    input.classList.add('filter');
     return input;
 }
 
@@ -231,6 +228,7 @@ function populateTbody(tbody, data) {
         const emailCell = row.insertCell();
         if (person.contact && person.contact.email) {
             const emailLink = document.createElement('a');
+            emailLink.target = '_blank';
             emailLink.href = `mailto:${person.contact.email}`;
             emailLink.textContent = person.contact.email;
             emailCell.appendChild(emailLink);
@@ -249,14 +247,12 @@ function populateTbody(tbody, data) {
         row.insertCell().textContent = person.contact && person.contact.address || "";
 
         const noteCell = row.insertCell();
-        const noteInput = document.createElement('input');
-        noteInput.type = 'text';
-        noteInput.value = person.note || "";
-        noteInput.addEventListener('input', (event) => {
-            person.note = event.target.value;
-            markDirty();
-        });
-        noteCell.appendChild(noteInput);
+        const noteSpan = document.createElement('span');
+        noteSpan.textContent = person.note ? person.note.substring(0, 20) + (person.note.length > 20 ? '...' : '') : "";
+        noteSpan.classList.add('note-span');
+        noteSpan.title = "Click to edit";
+        noteSpan.addEventListener('click', () => openNoteEditor(person, noteSpan));
+        noteCell.appendChild(noteSpan);
 
         const researchCell = row.insertCell();
         researchCell.classList.add("research-tags");
@@ -288,6 +284,46 @@ function populateTbody(tbody, data) {
         });
         removeCell.appendChild(removeButton);
     });
+}
+
+function openNoteEditor(person, noteSpan) {
+    const editor = document.createElement('textarea');
+    editor.classList.add('note-editor');
+    editor.value = person.note || '';
+    document.body.appendChild(editor);
+
+    const rect = noteSpan.getBoundingClientRect();
+    editor.style.top = `${rect.bottom + window.scrollY}px`;
+    editor.style.left = `${rect.left + window.scrollX}px`;
+
+    let editorClosed = false;
+
+    const closeEditor = (save=true) => {
+        if (editorClosed) return;
+        editorClosed = true;
+
+        const newNote = editor.value.trim();
+        if (save && (person.note !== newNote)) {
+            person.note = newNote;
+            noteSpan.textContent = person.note.substring(0, 20) + (person.note.length > 20 ? '...' : '');
+            markDirty();
+        }
+        document.body.removeChild(editor);
+        document.removeEventListener('keydown', handleKeyDown);
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Escape') {
+            closeEditor(false);
+        } else if (event.ctrlKey && event.key === 'Enter') {
+            closeEditor();
+        }
+    };
+
+    editor.addEventListener('blur', closeEditor);
+    document.addEventListener('keydown', handleKeyDown);
+
+    editor.focus();
 }
 
 function handleFileSelect(event) {
