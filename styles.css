@@ -77,22 +77,6 @@ td {
     color: darkred;
 }
 
-input[type="text"] {
-    width: 100px;
-    padding: 1px;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    font-size: 1em;
-}
-
-select {
-    max-width: 100px;
-    padding: 1px;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    font-size: 1em;
-}
-
 .drop-zone {
     display: flex;
     flex-direction: row;
@@ -193,10 +177,11 @@ select {
     display: none;
 }
 
-input.filter {
+.filter {
     width: 100%;
     padding: 3px;
     border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 :root {
@@ -206,17 +191,19 @@ input.filter {
 
 .note-span {
     cursor: pointer;
-    background-color: #ddd;
+    background-color: #efefef;
     display: block;
-    width: 100%;
+    width: 100px;
     height: 100%;
     min-height: 20px;
     border-radius: 3px;
     border: 1px solid #bbb;
+    overflow: hidden;
+    padding: 3px;
 }
 
 .note-span:hover {
-    background-color: #d8d8d8;
+    background-color: #ddd;
 }
 
 .note-editor {
@@ -225,12 +212,14 @@ input.filter {
     background: white;
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    min-width: 200px;
-    max-width: 300px;
-    max-height: 150px;
+    padding: 3px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 100px;
+    max-width: -webkit-fill-available;
+    max-height: -webkit-fill-available;
+    min-height: 30px;
     overflow-y: auto;
     font-size: 1em;
     font-family: Arial, sans-serif;
+    text-wrap-mode: nowrap;
 }

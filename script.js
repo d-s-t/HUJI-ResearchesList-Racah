@@ -41,14 +41,14 @@ function createTableFromObjects(data) {
     const headerRow = thead.insertRow();
     const headers = [
         { text: "Photo", key: "photo", sortable: false },
-        { text: "Name", key: "name" },
-        { text: "Title", key: "professionalTitle" },
+        { text: "Name", key: "name", filter: () => createNameFilter() },
+        { text: "Title", key: "professionalTitle", filter: () => createTitleFilter(data) },
         { text: "Email", key: "email" },
         { text: "Website", key: "website" },
         { text: "Phone", key: "phone" },
         { text: "Address", key: "address" },
-        { text: "Note", key: "note" },
-        { text: "Research Area", key: "researchArea" },
+        { text: "Note", key: "note", filter: () => createNoteFilter() },
+        { text: "Research Area", key: "researchArea", filter: () => createResearchAreaFilter() },
         { text: "", key: "remove", sortable: false }
     ].map(header => {
         const th = document.createElement('th');
@@ -56,58 +56,41 @@ function createTableFromObjects(data) {
         const label = document.createElement('label');
         label.textContent = header.text;
         th.appendChild(label);
-        const filterContainer = document.createElement('div');
-        filterContainer.style.display = 'flex';
-        filterContainer.style.flexDirection = 'column';
-        th.appendChild(filterContainer);
-
-        if (header.text === "Title") {
-            const select = createTitleFilter(data);
-            filterContainer.appendChild(select);
-            select.addEventListener('change', () => filterTable(data));
-        } else if (header.text === "Research Area") {
-            th.style.whiteSpace = 'normal';
-            const input = createResearchAreaFilter();
-            filterContainer.appendChild(input);
-            input.addEventListener('input', () => filterTable(data));
-        } else if (header.text === "Note") {
-            const input = createNoteFilter();
-            filterContainer.appendChild(input);
-            input.addEventListener('input', () => filterTable(data));
-        } else if (header.text === "Name") {
-            const input = createNameFilter();
-            filterContainer.appendChild(input);
-            input.addEventListener('input', () => filterTable(data));
+        if (header.filter) {
+            const filterContainer = document.createElement('div');
+            filterContainer.style.display = 'flex';
+            filterContainer.style.flexDirection = 'column';
+            th.appendChild(filterContainer);
+            const filter = header.filter();
+            filterContainer.appendChild(filter);
+            filter.addEventListener('change', () => populateTbody(tbody, data));
+            filter.addEventListener('input', () => populateTbody(tbody, data));
         }
         headerRow.appendChild(th);
-        return { th, key: header.key, sortable: header.sortable !== false };
+        if (header.sortable !== false) {
+            label.addEventListener('click', () => {
+                const sortDirection = label.dataset.sortDirection || 'asc';
+                const sortedData = data.sort((a, b) => {
+                    const valueA = getValueForSorting(a, header.key);
+                    const valueB = getValueForSorting(b, header.key);
+    
+                    if (valueA < valueB) {
+                        return sortDirection === 'asc' ? -1 : 1;
+                    }
+                    if (valueA > valueB) {
+                        return sortDirection === 'asc' ? 1 : -1;
+                    }
+                    return 0;
+                });
+    
+                populateTbody(tbody, sortedData);
+                label.dataset.sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+            });
+        }
+        return { th, key: header.key};
     });
 
     populateTbody(tbody, data);
-
-    headers.forEach(({ th, key, sortable }) => {
-        if (!sortable) return;
-        const labels = th.getElementsByTagName('label');
-        const header = labels.length > 0 ? labels[0] : th;
-        header.addEventListener('click', () => {
-            const sortDirection = header.dataset.sortDirection || 'asc';
-            const sortedData = data.sort((a, b) => {
-                const valueA = getValueForSorting(a, key);
-                const valueB = getValueForSorting(b, key);
-
-                if (valueA < valueB) {
-                    return sortDirection === 'asc' ? -1 : 1;
-                }
-                if (valueA > valueB) {
-                    return sortDirection === 'asc' ? 1 : -1;
-                }
-                return 0;
-            });
-
-            populateTbody(tbody, sortedData);
-            header.dataset.sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-        });
-    });
 
     return table;
 }
@@ -138,6 +121,7 @@ function getValueForSorting(person, key) {
 function createTitleFilter(data) {
     const select = document.createElement('select');
     select.id = 'title-filter';
+    select.classList.add('filter');
     const uniqueTitles = [...new Set(data.map(person => person.professionalTitle || ""))];
     const allOption = document.createElement('option');
     allOption.value = "<all>";
@@ -174,19 +158,11 @@ function createTextFilter(id){
 }
 
 function filterTable(originalData) {
-    const tableContainer = document.getElementById('table-container')
-    const table = tableContainer.querySelector('table')
-
-    if (!table) {
-        return;
-    }
-    const tbody = table.querySelector('tbody')
-
     const titleFilter = document.getElementById('title-filter'); 
     const researchFilter = document.getElementById('research-filter');
     const noteFilter = document.getElementById('note-filter');
     const nameFilter = document.getElementById('name-filter');
-    const titleFilterValue = titleFilter?.value;
+    const titleFilterValue = titleFilter ? titleFilter.value : "<all>";
     const researchFilterValue = new RegExp(researchFilter?.value, 'i') || /.*/;
     const noteFilterValue = new RegExp(noteFilter?.value, 'i') || /.*/;
     const nameFilterValue = new RegExp(nameFilter?.value, 'i') || /.*/;
@@ -198,13 +174,12 @@ function filterTable(originalData) {
         const nameMatch = nameFilterValue.test(person.name || '');
         return titleMatch && researchMatch && noteMatch && nameMatch;
     });
-
-    populateTbody(tbody, filteredData);
+    return filteredData;
 }
 
 function populateTbody(tbody, data) {
     tbody.innerHTML = '';
-    data.forEach((person, index) => {
+    filterTable(data).forEach((person, index) => {
         const row = tbody.insertRow();
 
         const photoCell = row.insertCell();
@@ -248,7 +223,7 @@ function populateTbody(tbody, data) {
 
         const noteCell = row.insertCell();
         const noteSpan = document.createElement('span');
-        noteSpan.textContent = person.note ? person.note.substring(0, 20) + (person.note.length > 20 ? '...' : '') : "";
+        noteSpan.textContent = person.note || "";
         noteSpan.classList.add('note-span');
         noteSpan.title = "Click to edit";
         noteSpan.addEventListener('click', () => openNoteEditor(person, noteSpan));
@@ -265,7 +240,7 @@ function populateTbody(tbody, data) {
                 const researchFilter = document.getElementById('research-filter');
                 if (researchFilter) {
                     researchFilter.value = area;
-                    filterTable(data);
+                    populateTbody(tbody, data);
                 }
             });
             researchCell.appendChild(span);
@@ -286,14 +261,40 @@ function populateTbody(tbody, data) {
     });
 }
 
+function reshapeEditor(editor) {
+    const style = getComputedStyle(editor);
+    let paddingW = parseInt(style.paddingLeft) + parseInt(style.paddingRight);
+    let width = parseInt(style.width);
+    let paddingH = parseInt(style.paddingTop) + parseInt(style.paddingBottom);
+    let height = parseInt(style.height);
+    editor.style.width = '10px';
+    let newWidth = editor.scrollWidth;
+    if (newWidth > width + paddingW) {
+        editor.style.width = newWidth + 'px';
+    }
+    else {
+        editor.style.width = width + 'px';
+    }
+    editor.style.height = '10px';
+    let newHeight = editor.scrollHeight;
+    if (newHeight >= height + paddingH) {
+        editor.style.height = newHeight + 'px';
+    }
+    else {
+        editor.style.height = height + 'px';
+    }
+}
+
 function openNoteEditor(person, noteSpan) {
     const editor = document.createElement('textarea');
     editor.classList.add('note-editor');
+    editor.addEventListener('input', ()=>reshapeEditor(editor));
     editor.value = person.note || '';
     document.body.appendChild(editor);
-
+    reshapeEditor(editor);
+    
     const rect = noteSpan.getBoundingClientRect();
-    editor.style.top = `${rect.bottom + window.scrollY}px`;
+    editor.style.top = `${rect.top + window.scrollY}px`;
     editor.style.left = `${rect.left + window.scrollX}px`;
 
     let editorClosed = false;
@@ -304,8 +305,7 @@ function openNoteEditor(person, noteSpan) {
 
         const newNote = editor.value.trim();
         if (save && (person.note !== newNote)) {
-            person.note = newNote;
-            noteSpan.textContent = person.note.substring(0, 20) + (person.note.length > 20 ? '...' : '');
+            noteSpan.textContent = person.note = newNote;
             markDirty();
         }
         document.body.removeChild(editor);
@@ -320,7 +320,7 @@ function openNoteEditor(person, noteSpan) {
         }
     };
 
-    editor.addEventListener('blur', closeEditor);
+    // editor.addEventListener('blur', closeEditor);
     document.addEventListener('keydown', handleKeyDown);
 
     editor.focus();
