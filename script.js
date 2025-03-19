@@ -1,5 +1,6 @@
 let isDirty = false;
 
+
 window.addEventListener('beforeunload', (event) => {
     if (isDirty) {
         event.preventDefault();
@@ -31,15 +32,26 @@ function markClean() {
 }
 
 function createTableFromObjects(data) {
-    if (!data || data.length === 0) {
-        return "No data to display.";
-    }
+    const tableContainer = document.getElementById('table-container');
+    tableContainer.innerHTML = '';
+    dropZone.style.display = 'none';
+    
+    const saveButton = document.getElementById('saveButton');
+    saveButton.style.display = 'block';
+    saveButton.addEventListener('click', () => {
+        saveData(data);
+    });
 
+    if (!data || data.length === 0) {
+        tableContainer.innerHTML = "No data to display.";
+    }
+    
     const table = document.createElement('table');
+    tableContainer.appendChild(table);
     const thead = table.createTHead();
     const tbody = table.createTBody();
     const headerRow = thead.insertRow();
-    const headers = [
+    [
         { text: "Photo", key: "photo", sortable: false },
         { text: "Name", key: "name", filter: () => createNameFilter() },
         { text: "Title", key: "professionalTitle", filter: () => createTitleFilter(data) },
@@ -329,8 +341,6 @@ function openNoteEditor(person, noteSpan) {
 function handleFileSelect(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
-    const tableContainer = document.getElementById('table-container');
-    const saveButton = document.getElementById('saveButton');
 
     reader.onload = (e) => {
         var data;
@@ -338,17 +348,11 @@ function handleFileSelect(event) {
             data = JSON.parse(e.target.result);
         } catch (error) {
             console.error("Error parsing JSON:", error);
-            tableContainer.innerHTML = "<p>Error parsing the JSON file.</p>";
+            document.getElementById('table-container').innerHTML = "<p>Error parsing the JSON file.</p>";
             fileInput.value = '';
             return;
         }
-        const table = createTableFromObjects(data);
-        tableContainer.appendChild(table);
-        dropZone.style.display = 'none';
-        saveButton.style.display = 'block';
-        saveButton.addEventListener('click', () => {
-            saveData(data);
-        });
+        createTableFromObjects(data);
     };
 
     reader.readAsText(file);
@@ -421,21 +425,14 @@ async function addPresets() {
 }
 
 async function loadPresetData(url) {
+    var data
     try {
         const response = await fetch(url);
-        const data = await response.json();
-        const tableContainer = document.getElementById('table-container');
-        const table = createTableFromObjects(data);
-        tableContainer.appendChild(table);
-        dropZone.style.display = 'none';
-        const saveButton = document.getElementById('saveButton');
-        saveButton.style.display = 'block';
-        saveButton.addEventListener('click', () => {
-            saveData(data);
-        });
+        data = await response.json();
     } catch (error) {
         console.error(`Error loading preset data from ${url}:`, error);
     }
+    createTableFromObjects(data);
 }
 
 const fileInput = document.getElementById('fileInput');
